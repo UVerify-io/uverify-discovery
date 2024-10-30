@@ -4,7 +4,7 @@ import SachaProfilePicture from '../assets/sacha.jpg';
 
 export default function Team() {
   return (
-    <div className="flex flex-col sm:flex-row items-center sm:items-start justify-center w-full pt-32 sm:pt-24">
+    <div className="flex flex-col sm:flex-row items-center sm:items-center justify-center w-full pt-16 sm:pt-24">
       <div className="w-11/12 sm:w-5/12 flex justify-center items-center flex-col">
         <h1 className="text-lg sm:text-4xl font-extrabold mb-4 sm:mb-8 drop-shadow-center-blue">
           Team

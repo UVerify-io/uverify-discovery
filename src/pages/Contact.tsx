@@ -1,11 +1,11 @@
 export default function Contact() {
   return (
     <div className="flex items-center justify-center flex-col w-11/12 sm:w-full">
-      <h3 className="text-sm sm:text-xl font-bold sm:font-bolder mb-8 mt-8 sm:mb-16">
+      <h3 className="text-sm sm:text-xl text-center w-full font-bold sm:font-bolder mb-8 mt-8 sm:mb-16">
         UVerify | Transparent. Immutable. Trusted.
       </h3>
 
-      <p className="mb-8 font-thin text-center">
+      <p className="mb-8 font-light text-center">
         <a
           className="mb-1 block"
           target="_blank"

@@ -12,7 +12,12 @@ import Button from './components/Button';
 function App() {
   return (
     <div className="snap-y snap-mandatory overflow-y-scroll h-screen text-white">
-      <div className="absolute top-8 left-8 flex items-center justify-center flex-col">
+      <div
+        className="absolute top-8 left-8 flex items-center justify-center flex-col z-10"
+        onClick={() => {
+          window.open('https://app.uverify.io', '_self');
+        }}
+      >
         <img
           src={Logo}
           alt="UVerify Logo"
@@ -23,38 +28,45 @@ function App() {
         </p>
       </div>
       <div className="absolute top-8 right-8 z-10">
-        <Button label="Launch DApp" color="white" variant="glass" />
+        <Button
+          label="Launch DApp"
+          color="white"
+          variant="glass"
+          onClick={() => {
+            window.open('https://uverify.io', '_self');
+          }}
+        />
       </div>
 
-      <section className="snap-always snap-start min-h-screen flex items-center justify-center bg-main-gradient">
+      <section className="snap-always snap-center min-h-screen flex items-center justify-center bg-main-gradient">
         <About />
       </section>
 
-      <section className="snap-always snap-start min-h-screen flex items-center justify-center bg-explanation-gradient">
+      <section className="snap-always snap-center min-h-screen flex items-center justify-center bg-explanation-gradient">
         <Explanation />
       </section>
 
-      <section className="snap-always snap-start min-h-screen flex items-center justify-center bg-features-gradient">
+      <section className="snap-always snap-center min-h-screen flex items-center justify-center bg-features-gradient">
         <Features />
       </section>
 
-      <section className="snap-always snap-start min-h-screen flex items-center justify-center bg-main-gradient">
+      <section className="snap-always snap-center min-h-screen flex items-center justify-center bg-main-gradient">
         <HowTo />
       </section>
 
-      <section className="snap-always snap-start min-h-screen flex items-center justify-center bg-blue-950">
+      <section className="snap-always snap-center min-h-screen flex items-center justify-center bg-blue-950">
         <Team />
       </section>
 
-      <section className="snap-always snap-start min-h-screen flex items-center justify-center bg-blue-600">
+      <section className="snap-always snap-center min-h-screen flex items-center justify-center bg-blue-600">
         <UseCases />
       </section>
 
-      <section className="snap-always snap-start min-h-screen flex items-center justify-center bg-blue-600">
+      <section className="snap-always snap-center min-h-screen flex items-center justify-center bg-blue-600">
         <Roadmap />
       </section>
 
-      <section className="snap-always snap-start min-h-screen flex items-center justify-center bg-main-gradient">
+      <section className="snap-always snap-center min-h-screen flex items-center justify-center bg-main-gradient">
         <Contact />
       </section>
     </div>
