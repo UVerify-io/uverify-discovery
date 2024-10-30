@@ -15,12 +15,12 @@ export default {
         'center-purple': '0 0 6px rgb(var(--color-purple-600) / 0.7)',
       },
       backgroundImage: {
-        'about-gradient':
+        'main-gradient':
           'linear-gradient(135deg, rgb(var(--color-green-400)), rgb(var(--color-cyan-500)), rgb(var(--color-blue-400)), rgb(var(--color-ice-400)))',
         'explanation-gradient':
-          'linear-gradient(135deg, rgb(var(--color-pink-400)), rgb(var(--color-pink-500)), rgb(var(--color-purple-500)))',
+          'linear-gradient(135deg, rgb(var(--color-purple-500)), rgb(var(--color-cyan-500)))',
         'features-gradient':
-          'linear-gradient(to right bottom, rgb(var(--color-ice-500)), rgb(var(--color-blue-500)), rgb(var(--color-purple-500)), rgb(var(--color-purple-500)))',
+          'linear-gradient(135deg, rgb(var(--color-pink-500)), rgb(var(--color-blue-500)))',
       },
       colors: {
         pink: {
