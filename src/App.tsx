@@ -6,10 +6,26 @@ import HowTo from './pages/HowTo';
 import Roadmap from './pages/Roadmap';
 import Team from './pages/Team';
 import UseCases from './pages/UseCases';
+import Logo from './assets/uverify.svg';
+import Button from './components/Button';
 
 function App() {
   return (
     <div className="snap-y snap-mandatory overflow-y-scroll h-screen text-white">
+      <div className="absolute top-8 left-8 flex items-center justify-center flex-col">
+        <img
+          src={Logo}
+          alt="UVerify Logo"
+          className="w-16 h-16 mb-1 md:w-24 md:h-24"
+        />
+        <p className="font-bold text-sm text-white uppercase md:text-md">
+          UVerify.io
+        </p>
+      </div>
+      <div className="absolute top-8 right-8 z-10">
+        <Button label="Launch DApp" color="white" variant="glass" />
+      </div>
+
       <section className="snap-always snap-start min-h-screen flex items-center justify-center bg-main-gradient">
         <About />
       </section>

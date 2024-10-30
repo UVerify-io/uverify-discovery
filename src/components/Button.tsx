@@ -1,6 +1,6 @@
 declare interface ButtonProps {
   label: string;
-  color: 'blue' | 'pink' | 'cyan' | 'purple' | 'ice' | 'green';
+  color: 'blue' | 'pink' | 'cyan' | 'purple' | 'ice' | 'green' | 'white';
   variant?: 'default' | 'glass' | 'contained';
   onClick?: Function;
   className?: string;
@@ -12,7 +12,7 @@ const Button = ({ label, color, variant, onClick, className }: ButtonProps) => {
   const backgroundColor = variant === 'glass' ? 'white' : `${color}-400`;
   const hoverBackgroundColor =
     variant === 'glass' ? `${color}-200` : backgroundColor;
-  const shadowColor = `${color}-100`;
+  const shadowColor = color !== 'white' ? `${color}-100` : 'white';
   let opacity = '75';
 
   if (variant === 'glass') {
