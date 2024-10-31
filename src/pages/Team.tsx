@@ -4,20 +4,19 @@ import SachaProfilePicture from '../assets/sacha.jpg';
 
 export default function Team() {
   return (
-    <div className="flex flex-col sm:flex-row items-center sm:items-center justify-center w-full pt-16 sm:pt-24">
+    <div className="flex flex-col sm:flex-row items-center sm:items-center justify-center w-full pt-16 sm:pt-24 h-xs:pt-16">
       <div className="w-11/12 sm:w-5/12 flex justify-center items-center flex-col">
-        <h1 className="text-lg sm:text-4xl font-extrabold mb-4 sm:mb-8 drop-shadow-center-blue">
+        <h1 className="text-lg sm:text-4xl h-xs:text-lg font-bold mb-4 sm:mb-8 h-xs:mb-2 drop-shadow-center-blue">
           Team
         </h1>
-        <div className="flex justify-center sm:justify-center items-center flex-row sm:flex-col">
+        <div className="flex justify-center items-center flex-row sm:flex-col">
           <img
             src={FabianProfilePicture}
             alt="Fabian Bormann"
-            className=" w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 mr-4 sm:mr-0 rounded-full sm:mb-4"
+            className=" w-24 h-24 sm:w-32 sm:h-32 h-xs:w-24 h-xs:h-24 md:w-40 md:h-40 mr-4 sm:mr-0 rounded-full sm:mb-4"
           />
           <div>
-            <p className="text-blue-600">Fabian Bormann</p>
-            <p className="text-blue-600 mb-4 italic">Founder</p>
+            <p className="text-blue-600 h-xs:text-sm">Fabian Bormann</p>
 
             <div className="flex flex-row justify-around items-center">
               <a
@@ -85,34 +84,34 @@ export default function Team() {
         </div>
       </div>
       <div className="w-11/12 sm:w-7/12 flex justify-center items-center flex-col mt-6 sm:mt-0 mb-8 sm:mb-0">
-        <h1 className="text-lg sm:text-4xl font-extrabold mb-4 sm:mb-8 drop-shadow-center-blue">
+        <h1 className="text-lg sm:text-4xl h-xs:text-lg font-bold mb-4 sm:mb-8 h-xs:mb-4 drop-shadow-center-blue">
           Supported By
         </h1>
         <a href="https://exponentialpartners.io" target="_blank">
-          <div className="flex items-center justify-center">
+          <div className="flex items-center justify-center mb-4">
             <img
               src="https://exponentialpartners.io/images/b25ca68e80e7e7c0633d66c7f984ac48.svg"
               alt="Exponential Partners Logo"
-              className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full mb-4"
+              className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 h-xs:w-16 h-xs:h-16 rounded-full"
             />
             <div className="flex flex-col items-center justify-center ml-2">
-              <p className="text-white uppercase font-thin tracking-widest">
+              <p className="text-white uppercase font-thin tracking-widest h-xs:text-xs">
                 Exponential
               </p>
-              <p className="text-white uppercase font-thin tracking-widest">
+              <p className="text-white uppercase font-thin tracking-widest h-xs:text-xs">
                 Partners
               </p>
             </div>
           </div>
         </a>
-        <p className="text-blue-600 mb-4 italic w-11/12">
+        <p className="text-blue-600 mb-4 italic w-11/12 h-xs:hidden">
           Exponential Partners specialises in guiding startups and enterprises
           worldwide in adopting blockchain and AI technologies through expert
           consulting
         </p>
         <div className="flex justify-center sm:justify-evenly items-center w-full ">
           <div className="flex flex-col justify-center items-center mr-8 sm:mr-0">
-            <div className="relative w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40">
+            <div className="relative w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 h-xs:w-24 h-xs:h-24">
               <img
                 src="https://exponentialpartners.io/images/b25ca68e80e7e7c0633d66c7f984ac48.svg"
                 alt="Exponential Partners Logo"
@@ -123,7 +122,7 @@ export default function Team() {
                 className="absolute left-[12.5%] top-[12.5%] w-[75%] h-[75%] rounded-full bg-cover"
               />
             </div>
-            <p className="text-blue-600 flex mt-2">
+            <p className="text-blue-600 flex mt-2 h-xs:text-sm">
               Rizwan Pabani
               <a
                 href="https://www.linkedin.com/in/rizpabani/"
@@ -151,7 +150,7 @@ export default function Team() {
             </p>
           </div>
           <div className="flex flex-col justify-center items-center">
-            <div className="relative w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40">
+            <div className="relative w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 h-xs:w-24 h-xs:h-24">
               <img
                 src="https://exponentialpartners.io/images/b25ca68e80e7e7c0633d66c7f984ac48.svg"
                 alt="Exponential Partners Logo"
@@ -162,7 +161,7 @@ export default function Team() {
                 className="absolute left-[12.5%] top-[12.5%] w-[75%] h-[75%] rounded-full bg-cover"
               />
             </div>
-            <p className="text-blue-600 flex mt-2">
+            <p className="text-blue-600 flex mt-2 h-xs:text-sm">
               Sacha Windisch
               <a
                 href="https://www.linkedin.com/in/sachawindisch/"

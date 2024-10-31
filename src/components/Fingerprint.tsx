@@ -5,21 +5,14 @@ declare interface FingerprintProps {
 }
 
 const Fingerprint = ({ hash }: FingerprintProps) => {
-  let containerSize = '36';
-  let fingerprintSize = '150';
-  let fontSize = '1rem';
-  let lineHeight = '1.2rem';
-  let chunkSize = 2;
-  let width = 'w-2/3';
-
   return (
-    <div className="relative flex items-center justify-center w-${containerSize} h-${containerSize} text-white/50">
+    <div className="relative flex items-center justify-center h-xs:w-20 h-32 h-xs:h-20 text-white/50">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         id="svg2"
         version="1.1"
-        width={fingerprintSize}
-        height={fingerprintSize}
+        width="150"
+        height="150"
         viewBox="0 0 430 630"
         fill="currentColor"
       >
@@ -37,13 +30,8 @@ const Fingerprint = ({ hash }: FingerprintProps) => {
           />
         </g>
       </svg>
-      <span
-        style={{ fontSize: fontSize, lineHeight: lineHeight }}
-        className={`absolute ${width} h-${containerSize} text-white text-justify break-words`}
-      >
-        {chunkSize === 2
-          ? hash.replace(/.{2}/g, '$& ')
-          : hash.replace(/.{8}/g, '$& ')}
+      <span className="absolute w-2/3 h-xs:w-11/12 text-white text-justify break-words leading-[1.2rem] text-base h-xs:text-2xs">
+        {hash.replace(/.{2}/g, '$& ')}
       </span>
     </div>
   );

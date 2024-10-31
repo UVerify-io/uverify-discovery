@@ -2,7 +2,7 @@ export default function About() {
   return (
     <>
       <div className="w-10/12 md:w-1/2">
-        <h1 className="text-4xl font-extrabold mb-8 drop-shadow-center-ice md:text-5xl md:mb-2">
+        <h1 className="text-4xl font-extrabold mb-8 drop-shadow-center-ice md:text-5xl md:mb-2 h-xs:text-lg h-xs:mb-2 h-xs:pt-8">
           Transform Verification with UVerify
         </h1>
         <p className="font-light text-lg drop-shadow-center-ice">

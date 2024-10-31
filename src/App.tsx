@@ -21,7 +21,7 @@ function App() {
         <img
           src={Logo}
           alt="UVerify Logo"
-          className="w-16 h-16 mb-1 md:w-24 md:h-24"
+          className="w-16 h-16 mb-1 md:w-24 md:h-24 h-xs:h-16 h-xs:w-16"
         />
         <p className="font-bold text-sm text-white uppercase md:text-md">
           UVerify.io

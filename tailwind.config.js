@@ -2,6 +2,17 @@ export default {
   content: ['./index.html', './src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
+      fontSize: {
+        '2xs': [
+          '0.6rem',
+          {
+            lineHeight: '1rem',
+          },
+        ],
+      },
+      screens: {
+        'h-xs': { raw: '(max-height: 460px)' },
+      },
       boxShadow: {
         center: '0 0 12px 0 rgb(0 0 0 / 0.1)',
         'white-center': '0 0 12px 0 rgb(255 255 255 / .5)',

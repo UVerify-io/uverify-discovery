@@ -9,11 +9,11 @@ interface SectionProps {
 export default function Section(props: SectionProps) {
   return (
     <div className={`flex flex-col items-center justify-center ${props.style}`}>
-      <div className="flex flex-col items-center justify-center border-4 border-white rounded-full p-2 mb-2 w-16 h-16 sm:w-32 sm:h-32">
+      <div className="flex flex-col items-center justify-center border-4 border-white rounded-full p-2 mb-2 w-16 h-16 sm:w-32 sm:h-32 h-xs:w-16 h-xs:h-16">
         <img
           src={props.icon}
           alt={`${props.title} icon`}
-          className="w-10 sm:w-20"
+          className="w-8 sm:w-16 h-xs:w-8"
         />
       </div>
       <h1
