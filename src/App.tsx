@@ -14,8 +14,8 @@ function App() {
   useEffect(() => {
     const handleHashChange = () => {
       if (
-        window.location.href.includes('verify') ||
-        window.location.href.includes('create')
+        window.location.href.includes('/verify') ||
+        window.location.href.includes('/create')
       ) {
         window.location.href = window.location.href.replace(
           /^https?:\/\/[^/]+/,
