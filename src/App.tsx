@@ -15,7 +15,7 @@ function App() {
       <div
         className="absolute top-8 left-8 flex items-center justify-center flex-col z-10"
         onClick={() => {
-          window.open('https://app.uverify.io', '_self');
+          window.open('https://uverify.io', '_self');
         }}
       >
         <img
@@ -33,40 +33,64 @@ function App() {
           color="white"
           variant="glass"
           onClick={() => {
-            window.open('https://uverify.io', '_self');
+            window.open('https://app.uverify.io', '_self');
           }}
         />
       </div>
 
-      <section className="snap-always snap-center min-h-screen flex items-center justify-center bg-main-gradient">
+      <section
+        id="about"
+        className="snap-always snap-center min-h-screen flex items-center justify-center bg-main-gradient"
+      >
         <About />
       </section>
 
-      <section className="snap-always snap-center min-h-screen flex items-center justify-center bg-explanation-gradient">
+      <section
+        id="explanation"
+        className="snap-always snap-center min-h-screen flex items-center justify-center bg-explanation-gradient"
+      >
         <Explanation />
       </section>
 
-      <section className="snap-always snap-center min-h-screen flex items-center justify-center bg-features-gradient">
+      <section
+        id="features"
+        className="snap-always snap-center min-h-screen flex items-center justify-center bg-features-gradient"
+      >
         <Features />
       </section>
 
-      <section className="snap-always snap-center min-h-screen flex items-center justify-center bg-main-gradient">
+      <section
+        id="how-to"
+        className="snap-always snap-center min-h-screen flex items-center justify-center bg-main-gradient"
+      >
         <HowTo />
       </section>
 
-      <section className="snap-always snap-center min-h-screen flex items-center justify-center bg-blue-950">
+      <section
+        id="team"
+        className="snap-always snap-center min-h-screen flex items-center justify-center bg-blue-950"
+      >
         <Team />
       </section>
 
-      <section className="snap-always snap-center min-h-screen flex items-center justify-center bg-blue-600">
+      <section
+        id="use-cases"
+        className="snap-always snap-center min-h-screen flex items-center justify-center bg-blue-600"
+      >
         <UseCases />
       </section>
 
-      <section className="snap-always snap-center min-h-screen flex items-center justify-center bg-blue-600">
+      <section
+        id="roadmap"
+        className="snap-always snap-center min-h-screen flex items-center justify-center bg-blue-600"
+      >
         <Roadmap />
       </section>
 
-      <section className="snap-always snap-center min-h-screen flex items-center justify-center bg-main-gradient">
+      <section
+        id="impress"
+        className="snap-always snap-center min-h-screen flex items-center justify-center bg-main-gradient"
+      >
         <Contact />
       </section>
     </div>
