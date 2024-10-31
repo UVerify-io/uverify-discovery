@@ -8,8 +8,40 @@ import Team from './pages/Team';
 import UseCases from './pages/UseCases';
 import Logo from './assets/uverify.svg';
 import Button from './components/Button';
+import { useEffect } from 'react';
 
 function App() {
+  useEffect(() => {
+    const handleHashChange = () => {
+      if (
+        window.location.href.includes('verify') ||
+        window.location.href.includes('create')
+      ) {
+        window.location.href = window.location.href.replace(
+          /^https?:\/\/[^/]+/,
+          'https://app.uverify.io'
+        );
+      }
+
+      const hash = window.location.hash;
+      if (hash) {
+        console.log(hash);
+        const element = document.querySelector(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    };
+
+    handleHashChange();
+    window.addEventListener('hashchange', handleHashChange);
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  }, []);
+
   return (
     <div className="snap-y snap-mandatory overflow-y-scroll h-screen text-white">
       <div
