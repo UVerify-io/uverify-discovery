@@ -22,10 +22,12 @@ export default function Section(props: SectionProps) {
         {props.title}
       </h1>
       {typeof props.description === 'string' ? (
-        <p className="text-sm text-justify sm:text-md">{props.description}</p>
+        <p className="text-md hyphens-auto text-justify sm:text-md">
+          {props.description}
+        </p>
       ) : (
         <ul
-          className={`w-10/12 md:w-9/12 lg:w-8/12 font-light text-xs sm:text-sm md:text-lg drop-shadow-center-${props.shadowColor} list-disc`}
+          className={`w-full mx-2 md:mx-0 md:w-9/12 lg:w-8/12 font-light text-lg md:text-lg drop-shadow-center-${props.shadowColor} list-disc`}
         >
           {props.description.map((text, index) => (
             <li key={index}>{text}</li>

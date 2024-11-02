@@ -4,7 +4,7 @@ import Section from '../components/Section';
 
 export default function Features() {
   return (
-    <div className="flex flex-col justify-between items-center sm:items-start sm:flex-row lg:w-10/12 h-xs:pt-8">
+    <div className="flex flex-col justify-between items-center sm:items-start sm:flex-row lg:w-10/12 h-xs:pt-8 h-xs:w-11/12">
       <Section
         title="Enterprise-Ready"
         description={[

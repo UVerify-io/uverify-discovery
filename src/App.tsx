@@ -43,7 +43,7 @@ function App() {
   }, []);
 
   return (
-    <div className="snap-y snap-mandatory overflow-y-scroll h-screen text-white">
+    <div className="snap-y snap-mandatory overflow-y-scroll h-dvh text-white">
       <div
         className="absolute top-8 left-8 flex items-center justify-center flex-col z-10"
         onClick={() => {

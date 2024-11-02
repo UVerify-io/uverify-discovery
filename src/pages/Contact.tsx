@@ -1,11 +1,11 @@
 export default function Contact() {
   return (
     <div className="flex items-center justify-center flex-col w-11/12 sm:w-full">
-      <h3 className="text-sm sm:text-xl text-center w-full font-bold sm:font-bolder mb-8 mt-8 sm:mb-16 h-xs:mb-4 h-xs:text-sm">
+      <h3 className="text-lg sm:text-xl text-center w-full font-bold sm:font-bolder mb-8 mt-8 sm:mb-16 h-xs:mb-4 h-xs:text-sm">
         UVerify | Transparent. Immutable. Trusted.
       </h3>
 
-      <p className="mb-8 font-light text-center h-xs:mb-4">
+      <p className="mb-8 text-md text-center h-xs:mb-4">
         <a
           className="mb-1 block"
           target="_blank"
@@ -23,7 +23,10 @@ export default function Contact() {
         20459 Hamburg
       </p>
 
-      <a href="mailto:hello@uverify.io" className="text-center mb-8 h-xs:mb-4">
+      <a
+        href="mailto:hello@uverify.io"
+        className="text-center text-xl mb-8 h-xs:mb-4"
+      >
         Contact us via mail
         <br />
         hello@uverify.io
@@ -32,7 +35,7 @@ export default function Contact() {
       <div className="flex items-center justify-center">
         <a href="https://x.com/UVer1fy" target="_blank" rel="noreferrer">
           <svg
-            className="w-6 h-6 text-white mx-2"
+            className="w-8 h-8 text-white mx-2"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -49,7 +52,7 @@ export default function Contact() {
           rel="noreferrer"
         >
           <svg
-            className="w-6 h-6 text-white mx-2"
+            className="w-8 h-8 text-white mx-2"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -70,7 +73,7 @@ export default function Contact() {
           rel="noreferrer"
         >
           <svg
-            className="w-6 h-6 text-white mx-2"
+            className="w-8 h-8 text-white mx-2"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             width="24"
