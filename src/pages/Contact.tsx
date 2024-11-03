@@ -90,6 +90,9 @@ export default function Contact() {
           </svg>
         </a>
       </div>
+      <p className="text-center my-4 font-light text-sm">
+        © 2024 UVerify by Fabian Bormann
+      </p>
     </div>
   );
 }

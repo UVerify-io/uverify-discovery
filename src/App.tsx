@@ -8,9 +8,45 @@ import Team from './pages/Team';
 import UseCases from './pages/UseCases';
 import Logo from './assets/uverify.svg';
 import Button from './components/Button';
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import TermsOfUse from './pages/TermsOfUse';
+import { PrivacyPolicy } from './pages/PrivacyPolicy';
 
-function App() {
+export default function App() {
+  const [currentSection, setCurrentSection] = useState(
+    ['#terms-of-use', '#privacy-policy'].includes(window.location.hash)
+      ? 'terms-of-use'
+      : ''
+  );
+  const sectionsRef = useRef<(HTMLElement | null)[]>([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setCurrentSection(entry.target.id);
+          }
+        }
+      },
+      { threshold: 0.1 } // Adjust threshold as needed
+    );
+
+    sectionsRef.current.forEach((section) => {
+      if (section) {
+        observer.observe(section);
+      }
+    });
+
+    return () => {
+      sectionsRef.current.forEach((section) => {
+        if (section) {
+          observer.unobserve(section);
+        }
+      });
+    };
+  }, []);
+
   useEffect(() => {
     const handleHashChange = () => {
       if (
@@ -25,10 +61,13 @@ function App() {
 
       const hash = window.location.hash;
       if (hash) {
-        console.log(hash);
         const element = document.querySelector(hash);
         if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
+          if (['#terms-of-use', '#privacy-policy', '#impress'].includes(hash)) {
+            element.scrollIntoView({ behavior: 'instant', block: 'start' });
+          } else {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
         }
       } else {
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -45,7 +84,12 @@ function App() {
   return (
     <div className="snap-y snap-mandatory overflow-y-scroll h-dvh text-white">
       <div
-        className="absolute top-8 left-8 flex items-center justify-center flex-col z-10"
+        className={`absolute top-8 left-8 flex items-center justify-center flex-col z-10 transition-opacity duration-500 ${
+          currentSection === 'terms-of-use' ||
+          currentSection === 'privacy-policy'
+            ? 'opacity-0'
+            : 'opacity-100'
+        }`}
         onClick={() => {
           window.open('https://uverify.io', '_self');
         }}
@@ -59,7 +103,14 @@ function App() {
           UVerify.io
         </p>
       </div>
-      <div className="absolute top-8 right-8 z-10">
+      <div
+        className={`absolute top-8 right-8 z-10 transition-opacity duration-500 ${
+          currentSection === 'terms-of-use' ||
+          currentSection === 'privacy-policy'
+            ? 'opacity-0'
+            : 'opacity-100'
+        }`}
+      >
         <Button
           label="Launch DApp"
           color="white"
@@ -70,63 +121,79 @@ function App() {
         />
       </div>
 
-      <section
-        id="about"
-        className="snap-always snap-center min-h-screen flex items-center justify-center bg-main-gradient"
-      >
-        <About />
-      </section>
-
-      <section
-        id="explanation"
-        className="snap-always snap-center min-h-screen flex items-center justify-center bg-explanation-gradient"
-      >
-        <Explanation />
-      </section>
-
-      <section
-        id="features"
-        className="snap-always snap-center min-h-screen flex items-center justify-center bg-features-gradient"
-      >
-        <Features />
-      </section>
-
-      <section
-        id="how-to"
-        className="snap-always snap-center min-h-screen flex items-center justify-center bg-main-gradient"
-      >
-        <HowTo />
-      </section>
-
-      <section
-        id="team"
-        className="snap-always snap-center min-h-screen flex items-center justify-center bg-blue-950"
-      >
-        <Team />
-      </section>
-
-      <section
-        id="use-cases"
-        className="snap-always snap-center min-h-screen flex items-center justify-center bg-blue-600"
-      >
-        <UseCases />
-      </section>
-
-      <section
-        id="roadmap"
-        className="snap-always snap-center min-h-screen flex items-center justify-center bg-blue-600"
-      >
-        <Roadmap />
-      </section>
-
-      <section
-        id="impress"
-        className="snap-always snap-center min-h-screen flex items-center justify-center bg-main-gradient"
-      >
-        <Contact />
-      </section>
+      {sections.map(({ id, component, background, snapPosition }, index) => (
+        <section
+          id={id}
+          key={id}
+          ref={(section) => (sectionsRef.current[index] = section)}
+          className={`snap-always snap-${snapPosition} min-h-screen flex items-center justify-center ${background}`}
+        >
+          {component}
+        </section>
+      ))}
     </div>
   );
 }
 
-export default App;
+const sections = [
+  {
+    id: 'about',
+    component: <About />,
+    background: 'bg-main-gradient',
+    snapPosition: 'center',
+  },
+  {
+    id: 'explanation',
+    component: <Explanation />,
+    background: 'bg-explanation-gradient',
+    snapPosition: 'center',
+  },
+  {
+    id: 'features',
+    component: <Features />,
+    background: 'bg-features-gradient',
+    snapPosition: 'center',
+  },
+  {
+    id: 'how-to',
+    component: <HowTo />,
+    background: 'bg-main-gradient',
+    snapPosition: 'center',
+  },
+  {
+    id: 'team',
+    component: <Team />,
+    background: 'bg-blue-950',
+    snapPosition: 'center',
+  },
+  {
+    id: 'use-cases',
+    component: <UseCases />,
+    background: 'bg-blue-600',
+    snapPosition: 'center',
+  },
+  {
+    id: 'roadmap',
+    component: <Roadmap />,
+    background: 'bg-blue-600',
+    snapPosition: 'center',
+  },
+  {
+    id: 'impress',
+    component: <Contact />,
+    background: 'bg-main-gradient',
+    snapPosition: 'center',
+  },
+  {
+    id: 'terms-of-use',
+    component: <TermsOfUse />,
+    background: 'bg-blue-950',
+    snapPosition: 'start',
+  },
+  {
+    id: 'privacy-policy',
+    component: <PrivacyPolicy />,
+    background: 'bg-blue-950',
+    snapPosition: 'start',
+  },
+];
