@@ -121,7 +121,7 @@ export default function App() {
         />
       </div>
 
-      {sections.map(({ id, component, background, snapPosition }, index) => (
+      {/*sections.map(({ id, component, background, snapPosition }, index) => (
         <section
           id={id}
           key={id}
@@ -130,70 +130,87 @@ export default function App() {
         >
           {component}
         </section>
-      ))}
+      ))*/}
+
+      <section
+        id="about"
+        ref={(section) => (sectionsRef.current[0] = section)}
+        className="snap-always snap-center min-h-screen flex items-center justify-center bg-main-gradient"
+      >
+        <About />
+      </section>
+
+      <section
+        id="explanation"
+        ref={(section) => (sectionsRef.current[1] = section)}
+        className="snap-always snap-center min-h-screen flex items-center justify-center bg-explanation-gradient"
+      >
+        <Explanation />
+      </section>
+
+      <section
+        id="features"
+        ref={(section) => (sectionsRef.current[2] = section)}
+        className="snap-always snap-center min-h-screen flex items-center justify-center bg-features-gradient"
+      >
+        <Features />
+      </section>
+
+      <section
+        id="how-to"
+        ref={(section) => (sectionsRef.current[3] = section)}
+        className="snap-always snap-center min-h-screen flex items-center justify-center bg-main-gradient"
+      >
+        <HowTo />
+      </section>
+
+      <section
+        id="team"
+        ref={(section) => (sectionsRef.current[4] = section)}
+        className="snap-always snap-center min-h-screen flex items-center justify-center bg-blue-950"
+      >
+        <Team />
+      </section>
+
+      <section
+        id="use-cases"
+        ref={(section) => (sectionsRef.current[5] = section)}
+        className="snap-always snap-center min-h-screen flex items-center justify-center bg-blue-600"
+      >
+        <UseCases />
+      </section>
+
+      <section
+        id="roadmap"
+        ref={(section) => (sectionsRef.current[6] = section)}
+        className="snap-always snap-center min-h-screen flex items-center justify-center bg-blue-600"
+      >
+        <Roadmap />
+      </section>
+
+      <section
+        id="impress"
+        ref={(section) => (sectionsRef.current[7] = section)}
+        className="snap-always snap-center min-h-screen flex items-center justify-center bg-main-gradient"
+      >
+        <Contact />
+      </section>
+
+      <section
+        id="terms-of-use"
+        ref={(section) => (sectionsRef.current[8] = section)}
+        className="snap-always snap-start min-h-screen flex items-center justify-center bg-blue-950"
+      >
+        <TermsOfUse />
+      </section>
+
+      <section
+        id="privacy-policy"
+        ref={(section) => (sectionsRef.current[9] = section)}
+        className="snap-always snap-start min-h-screen flex items-center justify-center bg-blue-950"
+      >
+        <PrivacyPolicy />
+      </section>
     </div>
   );
 }
-
-const sections = [
-  {
-    id: 'about',
-    component: <About />,
-    background: 'bg-main-gradient',
-    snapPosition: 'center',
-  },
-  {
-    id: 'explanation',
-    component: <Explanation />,
-    background: 'bg-explanation-gradient',
-    snapPosition: 'center',
-  },
-  {
-    id: 'features',
-    component: <Features />,
-    background: 'bg-features-gradient',
-    snapPosition: 'center',
-  },
-  {
-    id: 'how-to',
-    component: <HowTo />,
-    background: 'bg-main-gradient',
-    snapPosition: 'center',
-  },
-  {
-    id: 'team',
-    component: <Team />,
-    background: 'bg-blue-950',
-    snapPosition: 'center',
-  },
-  {
-    id: 'use-cases',
-    component: <UseCases />,
-    background: 'bg-blue-600',
-    snapPosition: 'center',
-  },
-  {
-    id: 'roadmap',
-    component: <Roadmap />,
-    background: 'bg-blue-600',
-    snapPosition: 'center',
-  },
-  {
-    id: 'impress',
-    component: <Contact />,
-    background: 'bg-main-gradient',
-    snapPosition: 'center',
-  },
-  {
-    id: 'terms-of-use',
-    component: <TermsOfUse />,
-    background: 'bg-blue-950',
-    snapPosition: 'start',
-  },
-  {
-    id: 'privacy-policy',
-    component: <PrivacyPolicy />,
-    background: 'bg-blue-950',
-    snapPosition: 'start',
-  },
-];
