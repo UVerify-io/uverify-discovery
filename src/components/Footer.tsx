@@ -87,7 +87,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="flex items-center justify-center mt-2 text-xs">
-        <Link className="flex items-center justify-center" to="/team">
+        <Link className="flex items-center justify-center" to="/#team">
           Created with <HeartIcon className="mx-1" />
           by UVerify © {date.getFullYear()} Fabian Bormann
         </Link>
