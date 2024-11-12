@@ -1,6 +1,7 @@
 import FabianProfilePicture from '../assets/fabian.jpg';
 import RizProfilePicture from '../assets/riz.jpg';
 import SachaProfilePicture from '../assets/sacha.jpg';
+import ExponentialPartnersLogo from '../assets/exponentialpartners.png';
 
 export default function Team() {
   return (
@@ -90,7 +91,7 @@ export default function Team() {
         <a href="https://exponentialpartners.io" target="_blank">
           <div className="flex items-center justify-center mb-4">
             <img
-              src="https://exponentialpartners.io/images/b25ca68e80e7e7c0633d66c7f984ac48.svg"
+              src={ExponentialPartnersLogo}
               alt="Exponential Partners Logo"
               className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 h-xs:w-16 h-xs:h-16 rounded-full"
             />
@@ -113,7 +114,7 @@ export default function Team() {
           <div className="flex flex-col justify-center items-center mr-8 sm:mr-0">
             <div className="relative w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 h-xs:w-24 h-xs:h-24">
               <img
-                src="https://exponentialpartners.io/images/b25ca68e80e7e7c0633d66c7f984ac48.svg"
+                src={ExponentialPartnersLogo}
                 alt="Exponential Partners Logo"
                 className="rounded-full"
               />
@@ -152,7 +153,7 @@ export default function Team() {
           <div className="flex flex-col justify-center items-center">
             <div className="relative w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 h-xs:w-24 h-xs:h-24">
               <img
-                src="https://exponentialpartners.io/images/b25ca68e80e7e7c0633d66c7f984ac48.svg"
+                src={ExponentialPartnersLogo}
                 alt="Exponential Partners Logo"
                 className="rounded-full"
               />
