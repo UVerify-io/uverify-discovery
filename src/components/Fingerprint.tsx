@@ -1,7 +1,5 @@
 declare interface FingerprintProps {
   hash: string;
-  className?: string;
-  size?: 'small' | 'large';
 }
 
 const Fingerprint = ({ hash }: FingerprintProps) => {

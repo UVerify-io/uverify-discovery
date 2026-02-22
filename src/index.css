@@ -1,96 +1,116 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+@config '../tailwind.config.js';
 
+@theme {
+  --shadow-center: 0 0 12px 0 rgb(0 0 0 / 0.1);
+  --shadow-white-center: 0 0 12px 0 rgb(255 255 255 / .5);
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
 @layer base {
-  :root {
-    --color-ice-50: 235 254 255;
-    --color-ice-100: 206 251 255;
-    --color-ice-200: 162 246 255;
-    --color-ice-300: 99 236 253;
-    --color-ice-400: 28 217 244;
-    --color-ice-500: 0 190 220;
-    --color-ice-600: 3 150 183;
-    --color-ice-700: 10 119 148;
-    --color-ice-800: 18 96 120;
-    --color-ice-900: 20 80 101;
-    --color-ice-950: 6 53 70;
-    --color-green-50: 235 254 246;
-    --color-green-100: 206 253 231;
-    --color-green-200: 162 248 211;
-    --color-green-300: 74 174 177;
-    --color-green-400: 45 221 162;
-    --color-green-500: 5 196 139;
-    --color-green-600: 0 160 114;
-    --color-green-700: 0 128 94;
-    --color-green-800: 0 65 76;
-    --color-green-900: 1 53 64;
-    --color-green-950: 0 47 37;
-    --color-cyan-50: 239 255 253;
-    --color-cyan-100: 199 255 251;
-    --color-cyan-200: 159 255 249;
-    --color-cyan-300: 80 248 243;
-    --color-cyan-400: 29 227 228;
-    --color-cyan-500: 4 196 200;
-    --color-cyan-600: 0 154 161;
-    --color-cyan-700: 5 122 128;
-    --color-cyan-800: 10 95 101;
-    --color-cyan-900: 13 80 84;
-    --color-cyan-950: 0 45 51;
-    --color-pink-50: 254 241 248;
-    --color-pink-100: 254 229 243;
-    --color-pink-200: 255 211 236;
-    --color-pink-300: 255 161 214;
-    --color-pink-400: 255 102 189;
-    --color-pink-500: 251 57 167;
-    --color-pink-600: 235 23 143;
-    --color-pink-700: 205 9 120;
-    --color-pink-800: 169 11 101;
-    --color-pink-900: 141 14 86;
-    --color-pink-950: 87 0 49;
-    --color-blue-50: 239 250 255;
-    --color-blue-100: 223 243 255;
-    --color-blue-200: 184 233 255;
-    --color-blue-300: 120 218 255;
-    --color-blue-400: 83 208 255;
-    --color-blue-500: 6 176 241;
-    --color-blue-600: 0 141 206;
-    --color-blue-700: 0 113 167;
-    --color-blue-800: 2 95 138;
-    --color-blue-900: 6 49 75;
-    --color-blue-950: 0 32 57;
-    --color-red-50: 255 243 241;
-    --color-red-100: 255 229 225;
-    --color-red-200: 255 207 199;
-    --color-red-300: 255 174 160;
-    --color-red-400: 255 144 125;
-    --color-red-500: 248 87 59;
-    --color-red-600: 229 58 29;
-    --color-red-700: 193 45 20;
-    --color-red-800: 160 40 20;
-    --color-red-900: 132 40 24;
-    --color-red-950: 72 17 7;
-    --color-yellow-50: 255 251 235;
-    --color-yellow-100: 255 243 198;
-    --color-yellow-200: 255 225 113;
-    --color-yellow-300: 255 211 74;
-    --color-yellow-400: 255 190 32;
-    --color-yellow-500: 249 156 7;
-    --color-yellow-600: 221 117 2;
-    --color-yellow-700: 183 81 6;
-    --color-yellow-800: 148 61 12;
-    --color-yellow-900: 122 51 13;
-    --color-yellow-950: 70 25 2;
-    --color-purple-50: 250 246 254;
-    --color-purple-100: 243 234 253;
-    --color-purple-200: 233 216 252;
-    --color-purple-300: 215 186 248;
-    --color-purple-400: 189 138 242;
-    --color-purple-500: 167 98 234;
-    --color-purple-600: 145 66 219;
-    --color-purple-700: 124 48 192;
-    --color-purple-800: 105 44 157;
-    --color-purple-900: 86 37 126;
-    --color-purple-950: 57 14 93;
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
   }
+}
+
+:root {
+  --color-ice-50: 235 254 255;
+  --color-ice-100: 206 251 255;
+  --color-ice-200: 162 246 255;
+  --color-ice-300: 99 236 253;
+  --color-ice-400: 28 217 244;
+  --color-ice-500: 0 190 220;
+  --color-ice-600: 3 150 183;
+  --color-ice-700: 10 119 148;
+  --color-ice-800: 18 96 120;
+  --color-ice-900: 20 80 101;
+  --color-ice-950: 6 53 70;
+  --color-green-50: 235 254 246;
+  --color-green-100: 206 253 231;
+  --color-green-200: 162 248 211;
+  --color-green-300: 74 174 177;
+  --color-green-400: 45 221 162;
+  --color-green-500: 5 196 139;
+  --color-green-600: 0 160 114;
+  --color-green-700: 0 128 94;
+  --color-green-800: 0 65 76;
+  --color-green-900: 1 53 64;
+  --color-green-950: 0 47 37;
+  --color-cyan-50: 239 255 253;
+  --color-cyan-100: 199 255 251;
+  --color-cyan-200: 159 255 249;
+  --color-cyan-300: 80 248 243;
+  --color-cyan-400: 29 227 228;
+  --color-cyan-500: 4 196 200;
+  --color-cyan-600: 0 154 161;
+  --color-cyan-700: 5 122 128;
+  --color-cyan-800: 10 95 101;
+  --color-cyan-900: 13 80 84;
+  --color-cyan-950: 0 45 51;
+  --color-pink-50: 254 241 248;
+  --color-pink-100: 254 229 243;
+  --color-pink-200: 255 211 236;
+  --color-pink-300: 255 161 214;
+  --color-pink-400: 255 102 189;
+  --color-pink-500: 251 57 167;
+  --color-pink-600: 235 23 143;
+  --color-pink-700: 205 9 120;
+  --color-pink-800: 169 11 101;
+  --color-pink-900: 141 14 86;
+  --color-pink-950: 87 0 49;
+  --color-blue-50: 239 250 255;
+  --color-blue-100: 223 243 255;
+  --color-blue-200: 184 233 255;
+  --color-blue-300: 120 218 255;
+  --color-blue-400: 83 208 255;
+  --color-blue-500: 6 176 241;
+  --color-blue-600: 0 141 206;
+  --color-blue-700: 0 113 167;
+  --color-blue-800: 2 95 138;
+  --color-blue-900: 6 49 75;
+  --color-blue-950: 0 32 57;
+  --color-red-50: 255 243 241;
+  --color-red-100: 255 229 225;
+  --color-red-200: 255 207 199;
+  --color-red-300: 255 174 160;
+  --color-red-400: 255 144 125;
+  --color-red-500: 248 87 59;
+  --color-red-600: 229 58 29;
+  --color-red-700: 193 45 20;
+  --color-red-800: 160 40 20;
+  --color-red-900: 132 40 24;
+  --color-red-950: 72 17 7;
+  --color-yellow-50: 255 251 235;
+  --color-yellow-100: 255 243 198;
+  --color-yellow-200: 255 225 113;
+  --color-yellow-300: 255 211 74;
+  --color-yellow-400: 255 190 32;
+  --color-yellow-500: 249 156 7;
+  --color-yellow-600: 221 117 2;
+  --color-yellow-700: 183 81 6;
+  --color-yellow-800: 148 61 12;
+  --color-yellow-900: 122 51 13;
+  --color-yellow-950: 70 25 2;
+  --color-purple-50: 250 246 254;
+  --color-purple-100: 243 234 253;
+  --color-purple-200: 233 216 252;
+  --color-purple-300: 215 186 248;
+  --color-purple-400: 189 138 242;
+  --color-purple-500: 167 98 234;
+  --color-purple-600: 145 66 219;
+  --color-purple-700: 124 48 192;
+  --color-purple-800: 105 44 157;
+  --color-purple-900: 86 37 126;
+  --color-purple-950: 57 14 93;
 }
