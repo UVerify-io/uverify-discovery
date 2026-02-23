@@ -16,6 +16,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Check token
+        run: |
+          if [ -z "${{ secrets.ROADMAP_GH_TOKEN }}" ]; then
+            echo "::error::ROADMAP_GH_TOKEN secret is not set. Create a PAT with read:org and read:project scopes and add it as a repository secret."
+            exit 1
+          fi
+
       - name: Fetch GitHub Projects v2 data
         env:
           GH_TOKEN: ${{ secrets.ROADMAP_GH_TOKEN }}
