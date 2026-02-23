@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-23T00:00:00.000Z",
+  "updatedAt": "2026-02-23T21:41:27.614Z",
   "columns": [
     {
       "status": "planned",
@@ -7,16 +7,31 @@
       "color": "bg-blue-400/20 border-blue-400/30 text-blue-300",
       "items": [
         {
-          "title": "Official SDKs v1",
-          "description": "Stable, versioned SDK releases for Python, TypeScript, and Java"
-        },
-        {
-          "title": "Advanced template examples",
-          "description": "Data availability patterns, external data sources, and new UI designs"
-        },
-        {
-          "title": "Multi-language support",
+          "title": "implement multi language support for the discovery page",
           "issueUrl": "https://github.com/UVerify-io/uverify-discovery/issues/3"
+        },
+        {
+          "title": "UVerify Examples: Advanced UI Templates incl. Data Availability & External Data Design Patterns"
+        },
+        {
+          "title": "[🚀 Feature]: Add Whitelist File to Download External Ui Templates",
+          "description": "Allow users to contribute custom UI configurations for standard deployments by submitting them with a repository hash. UVerify will try to download the repository matching the hash and whitelist this ui template for app.uverify.io. This enhances community contributions and UI flexibility while maintaining security through hash verification.",
+          "issueUrl": "https://github.com/UVerify-io/uverify-ui/issues/41"
+        },
+        {
+          "title": "[🚀 Feature]: Transaction Sponsorship",
+          "description": "For onboarding users the fee provider script could be super helpful, already started in the uverify/scripts repository. It just needs to be adopted by the backend by providing a controller and the needed off-chain business logic.",
+          "issueUrl": "https://github.com/UVerify-io/uverify-backend/issues/27"
+        },
+        {
+          "title": "[🐞 Bug]: Tadamon template has no restriction to grow on its y axis",
+          "description": "Currently on big screens, the Tadamon template just grows in y direction without any restriction which could look odd in some situations",
+          "issueUrl": "https://github.com/UVerify-io/uverify-ui/issues/45"
+        },
+        {
+          "title": "[👷 Task]: Remove restricted ui templates from repository",
+          "description": "Currently, the Tadamon/UNDP and Connected Goods templates are restricted to certain addresses. It makes sense to create an external repository for uverify-additional-templates that includes restricted templates, while the main UI package should contain only publicly available UI templates. After removing the Connected Goods template, it would make sense to create an adjustable, freely accessible version of it, along with other types of certificates.",
+          "issueUrl": "https://github.com/UVerify-io/uverify-ui/issues/47"
         }
       ]
     },
@@ -26,14 +41,19 @@
       "color": "bg-yellow-400/20 border-yellow-400/30 text-yellow-300",
       "items": [
         {
-          "title": "UI duplicate submission guard",
+          "title": "[👷 Task]: UI Logic to Hide/Prevent Double Submission of Identical Hashes",
           "description": "Currently, the UI allows users to submit the same hash multiple times, even if the certificate policy for the first submission should prevent or hide subsequent attempts.\n\n### Requirements\n\n- Implement a check against the certificate policy during the submission flow.\n- If a hash has already been submitted and the policy dictates uniqueness, the UI should either disable the submit button or provide a warning/link to the existing certificate.\n- For certificates not submitted via the ui, the certificate page should show only the first submission, pagination, the lastest submission or just paginations for the identical issuer based on the policy",
           "issueUrl": "https://github.com/UVerify-io/uverify-backend/issues/24"
         },
         {
-          "title": "External template whitelisting",
-          "description": "Allow users to contribute custom UI configurations for standard deployments by submitting them with a repository hash. UVerify will try to download the repository matching the hash and whitelist this ui template for app.uverify.io. This enhances community contributions and UI flexibility while maintaining security through hash verification.",
-          "issueUrl": "https://github.com/UVerify-io/uverify-ui/issues/41"
+          "title": "[👷 Task]: Publish Artifact to Maven Central",
+          "description": "Currently only the TypeScript artifacts have been pushed to npmjs, but the Java library still needs to be uploaded, so that it is accessible for maven and gradle users.",
+          "issueUrl": "https://github.com/UVerify-io/uverify-sdks/issues/9"
+        },
+        {
+          "title": "[👷 Task]: Publish Artifacts to Pypi",
+          "description": "Currently only the TypeScript artifacts have been pushed to npmjs, but the Python library still needs to be uploaded, so that it is accessible for pip users.",
+          "issueUrl": "https://github.com/UVerify-io/uverify-sdks/issues/10"
         }
       ]
     },
@@ -43,21 +63,30 @@
       "color": "bg-green-400/20 border-green-400/30 text-green-300",
       "items": [
         {
-          "title": "Open source uverify dApp",
-          "issueUrl": "https://github.com/UVerify-io/uverify-ui/issues/1"
-        },
-        {
-          "title": "Templating engine",
-          "issueUrl": "https://github.com/UVerify-io/uverify-ui/issues/3"
-        },
-        {
           "title": "API documentation",
           "issueUrl": "https://github.com/UVerify-io/uverify-discovery/issues/4"
         },
         {
-          "title": "Library Endpoints to Improve Proxy Contract Upgrades",
-          "description": "Currently the library updates need to be done manually and also the transaction hash and output index for each submission needs to be part of the .env file, which makes the proxy update less intuitive and leaves space for issues during the process. Adding a library controller would improve this situation and a library service could pick up the latest state contract version on-the-fly.",
-          "issueUrl": "https://github.com/UVerify-io/uverify-backend/issues/25"
+          "title": "Modernize Landing Page and Integrate Live Data",
+          "description": "### Description\n\nThe current UVerify landing page is outdated and does not reflect the real-time activity of the network. We need to refresh the design and connect it to our statistics endpoint.\n\n### Tasks\n\n- Update the UI/UX design to match the current project branding.\n- Implement data fetching from the `/statistics` endpoint for transaction and fee insights.\n- Display live metrics such as total certificates issued\n- Explain custom UI's and link docs",
+          "issueUrl": "https://github.com/UVerify-io/uverify-discovery/issues/5"
+        },
+        {
+          "title": "Open source uverify dApp",
+          "issueUrl": "https://github.com/UVerify-io/uverify-ui/issues/1"
+        },
+        {
+          "title": "Bearer token refresh before paypal checkout",
+          "issueUrl": "https://github.com/UVerify-io/uverify-ui/issues/2"
+        },
+        {
+          "title": "Improve Documentation for Cost Calculation and UI Submissions",
+          "description": "### Description\n\nOur current documentation lacks depth in critical operational areas. New users struggle to predict costs and understand the custom UI submission flow.\n\n### Content Needed\n\n#### Cost Calculation Guide\n- Detailed breakdown of fees, gas costs, and how they scale.\n- Examples for different certificate volumes.\n- Comparison of different deployment strategies.\n\n#### Custom UI Submission Process\n- A step-by-step tutorial on how to submit and integrate custom UIs within the UVerify ecosystem.\n- Best practices for UI design.\n- Security considerations.",
+          "issueUrl": "https://github.com/UVerify-io/uverify-docs/issues/1"
+        },
+        {
+          "title": "Templating engine",
+          "issueUrl": "https://github.com/UVerify-io/uverify-ui/issues/3"
         },
         {
           "title": "Add privacy policy",
@@ -68,9 +97,9 @@
           "issueUrl": "https://github.com/UVerify-io/uverify-discovery/issues/2"
         },
         {
-          "title": "Improve Documentation for Cost Calculation and UI Submissions",
-          "description": "### Description\n\nOur current documentation lacks depth in critical operational areas. New users struggle to predict costs and understand the custom UI submission flow.\n\n### Content Needed\n\n#### Cost Calculation Guide\n- Detailed breakdown of fees, gas costs, and how they scale.\n- Examples for different certificate volumes.\n- Comparison of different deployment strategies.\n\n#### Custom UI Submission Process\n- A step-by-step tutorial on how to submit and integrate custom UIs within the UVerify ecosystem.\n- Best practices for UI design.\n- Security considerations.",
-          "issueUrl": "https://github.com/UVerify-io/uverify-docs/issues/1"
+          "title": "[🚀 Feature]: Library Endpoints to Improve Proxy Contract Upgrades",
+          "description": "Currently the library updates need to be done manually and also the transaction has and output index for each submission needs to be part of the .env file, which makes the proxy update less intuitive and leaves space for issues during the process. Adding a library controller would improve this situation and a library service could pick up the latest state contract version on-the-fly.",
+          "issueUrl": "https://github.com/UVerify-io/uverify-backend/issues/25"
         }
       ]
     }
