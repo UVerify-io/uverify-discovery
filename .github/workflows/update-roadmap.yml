@@ -1,0 +1,154 @@
+name: Update Roadmap
+
+on:
+  schedule:
+    - cron: '0 6 * * *'   # 06:00 UTC
+    - cron: '0 18 * * *'  # 18:00 UTC
+  workflow_dispatch:       # allow manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  update-roadmap:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Fetch GitHub Projects v2 data
+        env:
+          GH_TOKEN: ${{ secrets.ROADMAP_GH_TOKEN }}
+        run: |
+          gh api graphql -f query='
+            query {
+              organization(login: "UVerify-io") {
+                projectV2(number: 1) {
+                  items(first: 100) {
+                    nodes {
+                      content {
+                        ... on Issue       { title body url }
+                        ... on DraftIssue  { title body }
+                        ... on PullRequest { title body url }
+                      }
+                      fieldValues(first: 10) {
+                        nodes {
+                          ... on ProjectV2ItemFieldSingleSelectValue {
+                            name
+                            field { ... on ProjectV2SingleSelectField { name } }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ' > /tmp/raw_roadmap.json
+
+      - name: Transform and write roadmap.json
+        run: |
+          node - <<'EOF'
+          const fs = require('fs');
+
+          const raw = JSON.parse(fs.readFileSync('/tmp/raw_roadmap.json', 'utf8'));
+          const items = raw.data?.organization?.projectV2?.items?.nodes ?? [];
+
+          // Map GitHub project status names → internal status keys
+          const STATUS_MAP = {
+            'Done':        'done',
+            'Shipped':     'done',
+            'Closed':      'done',
+            'Complete':    'done',
+            'In Progress': 'progress',
+            'In Review':   'progress',
+            'Review':      'progress',
+            'Todo':        'planned',
+            'Backlog':     'planned',
+            'Planned':     'planned',
+            'Coming Next': 'planned',
+            'Next':        'planned',
+          };
+
+          const columns = {
+            planned:  { status: 'planned',  label: 'Coming Next', color: 'bg-blue-400/20 border-blue-400/30 text-blue-300',   items: [] },
+            progress: { status: 'progress', label: 'In Progress', color: 'bg-yellow-400/20 border-yellow-400/30 text-yellow-300', items: [] },
+            done:     { status: 'done',     label: 'Shipped',     color: 'bg-green-400/20 border-green-400/30 text-green-300',  items: [] },
+          };
+
+          // Extract the meaningful description from a templated or free-form issue body.
+          // Templates are detected by their unique first-section heading; we pull only
+          // the primary content section and drop boilerplate (checboxes, "No response", etc.).
+          function extractDescription(body) {
+            if (!body) return undefined;
+            const text = body.trim();
+            if (!text) return undefined;
+
+            const TEMPLATE_SECTIONS = [
+              // task template
+              { start: '### Task description 🔨🔧',              end: '### Anything else?' },
+              // feature-request template
+              { start: '### 🚀 The feature and your motivation',  end: '### Alternatives' },
+              // bug-report template
+              { start: '### Current (incorrect 🙈) Behavior',    end: '### Expected Behavior' },
+            ];
+
+            for (const { start, end } of TEMPLATE_SECTIONS) {
+              const si = text.indexOf(start);
+              if (si === -1) continue;
+              const after = text.slice(si + start.length);
+              const ei = after.indexOf(end);
+              const raw = (ei === -1 ? after : after.slice(0, ei)).trim();
+              // Drop empty or placeholder-only content
+              if (!raw || raw === '_No response_') return undefined;
+              return raw;
+            }
+
+            // Free-form body — return as-is
+            return text;
+          }
+
+          for (const node of items) {
+            if (!node.content) continue;
+
+            const title = node.content.title?.trim();
+            if (!title) continue;
+
+            const description = extractDescription(node.content.body);
+
+            const issueUrl = node.content.url || undefined;
+
+            const statusField = node.fieldValues.nodes.find(
+              (v) => v.field?.name === 'Status'
+            );
+            const statusName = statusField?.name ?? '';
+            const status = STATUS_MAP[statusName] ?? 'planned';
+
+            const item = { title, ...(description && { description }), ...(issueUrl && { issueUrl }) };
+            columns[status].items.push(item);
+          }
+
+          const result = {
+            updatedAt: new Date().toISOString(),
+            columns: Object.values(columns),
+          };
+
+          fs.writeFileSync('public/roadmap.json', JSON.stringify(result, null, 2));
+          console.log(
+            `Written: done=${columns.done.items.length}, ` +
+            `progress=${columns.progress.items.length}, ` +
+            `planned=${columns.planned.items.length}`
+          );
+          EOF
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/roadmap.json
+          if git diff --cached --quiet; then
+            echo "No changes to roadmap.json — skipping commit"
+          else
+            git commit -m "chore: update roadmap data [skip ci]"
+            git push
+          fi

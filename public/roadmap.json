@@ -1,0 +1,78 @@
+{
+  "updatedAt": "2026-02-23T00:00:00.000Z",
+  "columns": [
+    {
+      "status": "planned",
+      "label": "Coming Next",
+      "color": "bg-blue-400/20 border-blue-400/30 text-blue-300",
+      "items": [
+        {
+          "title": "Official SDKs v1",
+          "description": "Stable, versioned SDK releases for Python, TypeScript, and Java"
+        },
+        {
+          "title": "Advanced template examples",
+          "description": "Data availability patterns, external data sources, and new UI designs"
+        },
+        {
+          "title": "Multi-language support",
+          "issueUrl": "https://github.com/UVerify-io/uverify-discovery/issues/3"
+        }
+      ]
+    },
+    {
+      "status": "progress",
+      "label": "In Progress",
+      "color": "bg-yellow-400/20 border-yellow-400/30 text-yellow-300",
+      "items": [
+        {
+          "title": "UI duplicate submission guard",
+          "description": "Currently, the UI allows users to submit the same hash multiple times, even if the certificate policy for the first submission should prevent or hide subsequent attempts.\n\n### Requirements\n\n- Implement a check against the certificate policy during the submission flow.\n- If a hash has already been submitted and the policy dictates uniqueness, the UI should either disable the submit button or provide a warning/link to the existing certificate.\n- For certificates not submitted via the ui, the certificate page should show only the first submission, pagination, the lastest submission or just paginations for the identical issuer based on the policy",
+          "issueUrl": "https://github.com/UVerify-io/uverify-backend/issues/24"
+        },
+        {
+          "title": "External template whitelisting",
+          "description": "Allow users to contribute custom UI configurations for standard deployments by submitting them with a repository hash. UVerify will try to download the repository matching the hash and whitelist this ui template for app.uverify.io. This enhances community contributions and UI flexibility while maintaining security through hash verification.",
+          "issueUrl": "https://github.com/UVerify-io/uverify-ui/issues/41"
+        }
+      ]
+    },
+    {
+      "status": "done",
+      "label": "Shipped",
+      "color": "bg-green-400/20 border-green-400/30 text-green-300",
+      "items": [
+        {
+          "title": "Open source uverify dApp",
+          "issueUrl": "https://github.com/UVerify-io/uverify-ui/issues/1"
+        },
+        {
+          "title": "Templating engine",
+          "issueUrl": "https://github.com/UVerify-io/uverify-ui/issues/3"
+        },
+        {
+          "title": "API documentation",
+          "issueUrl": "https://github.com/UVerify-io/uverify-discovery/issues/4"
+        },
+        {
+          "title": "Library Endpoints to Improve Proxy Contract Upgrades",
+          "description": "Currently the library updates need to be done manually and also the transaction hash and output index for each submission needs to be part of the .env file, which makes the proxy update less intuitive and leaves space for issues during the process. Adding a library controller would improve this situation and a library service could pick up the latest state contract version on-the-fly.",
+          "issueUrl": "https://github.com/UVerify-io/uverify-backend/issues/25"
+        },
+        {
+          "title": "Add privacy policy",
+          "issueUrl": "https://github.com/UVerify-io/uverify-discovery/issues/1"
+        },
+        {
+          "title": "Add terms of use",
+          "issueUrl": "https://github.com/UVerify-io/uverify-discovery/issues/2"
+        },
+        {
+          "title": "Improve Documentation for Cost Calculation and UI Submissions",
+          "description": "### Description\n\nOur current documentation lacks depth in critical operational areas. New users struggle to predict costs and understand the custom UI submission flow.\n\n### Content Needed\n\n#### Cost Calculation Guide\n- Detailed breakdown of fees, gas costs, and how they scale.\n- Examples for different certificate volumes.\n- Comparison of different deployment strategies.\n\n#### Custom UI Submission Process\n- A step-by-step tutorial on how to submit and integrate custom UIs within the UVerify ecosystem.\n- Best practices for UI design.\n- Security considerations.",
+          "issueUrl": "https://github.com/UVerify-io/uverify-docs/issues/1"
+        }
+      ]
+    }
+  ]
+}
