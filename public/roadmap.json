@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-24T19:03:50.351Z",
+  "updatedAt": "2026-02-25T06:47:34.282Z",
   "columns": [
     {
       "status": "planned",
@@ -27,11 +27,6 @@
           "title": "[🐞 Bug]: Tadamon template has no restriction to grow on its y axis",
           "description": "Currently on big screens, the Tadamon template just grows in y direction without any restriction which could look odd in some situations",
           "issueUrl": "https://github.com/UVerify-io/uverify-ui/issues/45"
-        },
-        {
-          "title": "[👷 Task]: Remove restricted ui templates from repository",
-          "description": "Currently, the Tadamon/UNDP and Connected Goods templates are restricted to certain addresses. It makes sense to create an external repository for uverify-additional-templates that includes restricted templates, while the main UI package should contain only publicly available UI templates. After removing the Connected Goods template, it would make sense to create an adjustable, freely accessible version of it, along with other types of certificates.",
-          "issueUrl": "https://github.com/UVerify-io/uverify-ui/issues/47"
         }
       ]
     },
@@ -46,14 +41,14 @@
           "issueUrl": "https://github.com/UVerify-io/uverify-backend/issues/24"
         },
         {
-          "title": "[👷 Task]: Publish Artifact to Maven Central",
-          "description": "Currently only the TypeScript artifacts have been pushed to npmjs, but the Java library still needs to be uploaded, so that it is accessible for maven and gradle users.",
-          "issueUrl": "https://github.com/UVerify-io/uverify-sdks/issues/9"
-        },
-        {
           "title": "[👷 Task]: Publish Artifacts to Pypi",
           "description": "Currently only the TypeScript artifacts have been pushed to npmjs, but the Python library still needs to be uploaded, so that it is accessible for pip users.",
           "issueUrl": "https://github.com/UVerify-io/uverify-sdks/issues/10"
+        },
+        {
+          "title": "[👷 Task]: Remove restricted ui templates from repository",
+          "description": "Currently, the Tadamon/UNDP and Connected Goods templates are restricted to certain addresses. It makes sense to create an external repository for uverify-additional-templates that includes restricted templates, while the main UI package should contain only publicly available UI templates. After removing the Connected Goods template, it would make sense to create an adjustable, freely accessible version of it, along with other types of certificates.",
+          "issueUrl": "https://github.com/UVerify-io/uverify-ui/issues/47"
         }
       ]
     },
@@ -62,6 +57,11 @@
       "label": "Shipped",
       "color": "bg-green-400/20 border-green-400/30 text-green-300",
       "items": [
+        {
+          "title": "[👷 Task]: Publish Artifact to Maven Central",
+          "description": "Currently only the TypeScript artifacts have been pushed to npmjs, but the Java library still needs to be uploaded, so that it is accessible for maven and gradle users.",
+          "issueUrl": "https://github.com/UVerify-io/uverify-sdks/issues/9"
+        },
         {
           "title": "API documentation",
           "issueUrl": "https://github.com/UVerify-io/uverify-discovery/issues/4"
