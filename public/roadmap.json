@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-28T06:21:17.877Z",
+  "updatedAt": "2026-02-28T18:34:44.481Z",
   "columns": [
     {
       "status": "planned",
@@ -14,19 +14,9 @@
           "title": "UVerify Examples: Advanced UI Templates incl. Data Availability & External Data Design Patterns"
         },
         {
-          "title": "[🚀 Feature]: Add Whitelist File to Download External Ui Templates",
-          "description": "Allow users to contribute custom UI configurations for standard deployments by submitting them with a repository hash. UVerify will try to download the repository matching the hash and whitelist this ui template for app.uverify.io. This enhances community contributions and UI flexibility while maintaining security through hash verification.",
-          "issueUrl": "https://github.com/UVerify-io/uverify-ui/issues/41"
-        },
-        {
           "title": "[🚀 Feature]: Transaction Sponsorship",
           "description": "For onboarding users the fee provider script could be super helpful, already started in the uverify/scripts repository. It just needs to be adopted by the backend by providing a controller and the needed off-chain business logic.",
           "issueUrl": "https://github.com/UVerify-io/uverify-backend/issues/27"
-        },
-        {
-          "title": "[🐞 Bug]: Tadamon template has no restriction to grow on its y axis",
-          "description": "Currently on big screens, the Tadamon template just grows in y direction without any restriction which could look odd in some situations",
-          "issueUrl": "https://github.com/UVerify-io/uverify-ui/issues/45"
         }
       ]
     },
@@ -44,11 +34,6 @@
           "title": "[👷 Task]: Publish Artifacts to Pypi",
           "description": "Currently only the TypeScript artifacts have been pushed to npmjs, but the Python library still needs to be uploaded, so that it is accessible for pip users.",
           "issueUrl": "https://github.com/UVerify-io/uverify-sdks/issues/10"
-        },
-        {
-          "title": "[👷 Task]: Remove restricted ui templates from repository",
-          "description": "Currently, the Tadamon/UNDP and Connected Goods templates are restricted to certain addresses. It makes sense to create an external repository for uverify-additional-templates that includes restricted templates, while the main UI package should contain only publicly available UI templates. After removing the Connected Goods template, it would make sense to create an adjustable, freely accessible version of it, along with other types of certificates.",
-          "issueUrl": "https://github.com/UVerify-io/uverify-ui/issues/47"
         }
       ]
     },
@@ -61,6 +46,11 @@
           "title": "[👷 Task]: Publish Artifact to Maven Central",
           "description": "Currently only the TypeScript artifacts have been pushed to npmjs, but the Java library still needs to be uploaded, so that it is accessible for maven and gradle users.",
           "issueUrl": "https://github.com/UVerify-io/uverify-sdks/issues/9"
+        },
+        {
+          "title": "[👷 Task]: Remove restricted ui templates from repository",
+          "description": "Currently, the Tadamon/UNDP and Connected Goods templates are restricted to certain addresses. It makes sense to create an external repository for uverify-additional-templates that includes restricted templates, while the main UI package should contain only publicly available UI templates. After removing the Connected Goods template, it would make sense to create an adjustable, freely accessible version of it, along with other types of certificates.",
+          "issueUrl": "https://github.com/UVerify-io/uverify-ui/issues/47"
         },
         {
           "title": "API documentation",
@@ -97,9 +87,19 @@
           "issueUrl": "https://github.com/UVerify-io/uverify-discovery/issues/2"
         },
         {
+          "title": "[🚀 Feature]: Add Whitelist File to Download External Ui Templates",
+          "description": "Allow users to contribute custom UI configurations for standard deployments by submitting them with a repository hash. UVerify will try to download the repository matching the hash and whitelist this ui template for app.uverify.io. This enhances community contributions and UI flexibility while maintaining security through hash verification.",
+          "issueUrl": "https://github.com/UVerify-io/uverify-ui/issues/41"
+        },
+        {
           "title": "[🚀 Feature]: Library Endpoints to Improve Proxy Contract Upgrades",
           "description": "Currently the library updates need to be done manually and also the transaction has and output index for each submission needs to be part of the .env file, which makes the proxy update less intuitive and leaves space for issues during the process. Adding a library controller would improve this situation and a library service could pick up the latest state contract version on-the-fly.",
           "issueUrl": "https://github.com/UVerify-io/uverify-backend/issues/25"
+        },
+        {
+          "title": "[🐞 Bug]: Tadamon template has no restriction to grow on its y axis",
+          "description": "Currently on big screens, the Tadamon template just grows in y direction without any restriction which could look odd in some situations",
+          "issueUrl": "https://github.com/UVerify-io/uverify-ui/issues/45"
         }
       ]
     }
