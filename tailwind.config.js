@@ -25,6 +25,19 @@ export default {
         'center-ice': '0 0 6px rgb(var(--color-ice-600) / 0.7)',
         'center-purple': '0 0 6px rgb(var(--color-purple-600) / 0.7)',
       },
+      keyframes: {
+        'logo-glow': {
+          '0%, 100%': {
+            filter: 'drop-shadow(0 0 6px rgba(34, 211, 238, 0.4)) drop-shadow(0 0 18px rgba(34, 211, 238, 0.15))',
+          },
+          '50%': {
+            filter: 'drop-shadow(0 0 14px rgba(34, 211, 238, 0.9)) drop-shadow(0 0 36px rgba(34, 211, 238, 0.4))',
+          },
+        },
+      },
+      animation: {
+        'logo-glow': 'logo-glow 3s ease-in-out infinite',
+      },
       backgroundImage: {
         // HERO: ice aurora from bottom-left + green accent from top-right
         'main-gradient': [

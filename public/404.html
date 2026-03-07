@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>UVerify | Technology and Trust</title>
+  <script>
+    // GitHub Pages SPA redirect: encode the path into the query string
+    // so index.html can restore it before the router initializes.
+    var l = window.location;
+    l.replace(
+      l.protocol + '//' + l.host + l.pathname.split('/').slice(0, 1).join('/') +
+      '/?p=' + encodeURIComponent(l.pathname.slice(1) + l.search) + l.hash
+    );
+  </script>
+</head>
+<body></body>
+</html>

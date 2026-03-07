@@ -7,6 +7,18 @@
   <meta name="theme-color" content="#002039" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content" />
   <title>UVerify | Technology and Trust</title>
+  <!-- GitHub Pages SPA routing: restore path encoded by 404.html -->
+  <script>
+    (function () {
+      var p = new URLSearchParams(window.location.search).get('p');
+      if (p) {
+        window.history.replaceState(
+          null, null,
+          '/' + decodeURIComponent(p) + window.location.hash
+        );
+      }
+    })();
+  </script>
   <!-- Matomo -->
   <script>
     var _paq = window._paq = window._paq || [];
