@@ -139,7 +139,7 @@ export default function DeveloperDocs() {
             'TypeScript / JavaScript',
             'Python',
             'Java',
-            'CLI: npx @uverify/cli init',
+            'client.apps: diploma, DPP, lab report helpers',
           ]}
           href="https://docs.uverify.io/sdk"
           cta="SDK docs"
