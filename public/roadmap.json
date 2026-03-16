@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-10T18:50:31.116Z",
+  "updatedAt": "2026-03-16T19:02:51.445Z",
   "columns": [
     {
       "status": "planned",
@@ -24,19 +24,18 @@
       "status": "progress",
       "label": "In Progress",
       "color": "bg-yellow-400/20 border-yellow-400/30 text-yellow-300",
-      "items": [
-        {
-          "title": "[👷 Task]: UI Logic to Hide/Prevent Double Submission of Identical Hashes",
-          "description": "Currently, the UI allows users to submit the same hash multiple times, even if the certificate policy for the first submission should prevent or hide subsequent attempts.\n\n### Requirements\n\n- Implement a check against the certificate policy during the submission flow.\n- If a hash has already been submitted and the policy dictates uniqueness, the UI should either disable the submit button or provide a warning/link to the existing certificate.\n- For certificates not submitted via the ui, the certificate page should show only the first submission, pagination, the lastest submission or just paginations for the identical issuer based on the policy",
-          "issueUrl": "https://github.com/UVerify-io/uverify-backend/issues/24"
-        }
-      ]
+      "items": []
     },
     {
       "status": "done",
       "label": "Shipped",
       "color": "bg-green-400/20 border-green-400/30 text-green-300",
       "items": [
+        {
+          "title": "[👷 Task]: UI Logic to Hide/Prevent Double Submission of Identical Hashes",
+          "description": "Currently, the UI allows users to submit the same hash multiple times, even if the certificate policy for the first submission should prevent or hide subsequent attempts.\n\n### Requirements\n\n- Implement a check against the certificate policy during the submission flow.\n- If a hash has already been submitted and the policy dictates uniqueness, the UI should either disable the submit button or provide a warning/link to the existing certificate.\n- For certificates not submitted via the ui, the certificate page should show only the first submission, pagination, the lastest submission or just paginations for the identical issuer based on the policy",
+          "issueUrl": "https://github.com/UVerify-io/uverify-backend/issues/24"
+        },
         {
           "title": "[👷 Task]: Publish Artifact to Maven Central",
           "description": "Currently only the TypeScript artifacts have been pushed to npmjs, but the Java library still needs to be uploaded, so that it is accessible for maven and gradle users.",
