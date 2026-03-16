@@ -113,7 +113,7 @@ export default function App() {
   };
 
   return (
-    <div ref={containerRef} className="overflow-y-auto h-dvh text-white">
+    <div ref={containerRef} className="overflow-y-auto h-dvh text-white no-scrollbar">
       {/* Fixed top bar */}
       <div className="fixed top-0 left-0 right-0 z-30 flex items-center justify-between px-4 h-16 backdrop-blur-md">
         <div

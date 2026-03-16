@@ -8,6 +8,14 @@ body {
   background-color: rgb(3 8 18);
 }
 
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 /* ── Section entrance animations ───────────────────────────────────────────
    Four variants with distinct character. All resolve when .section-visible
    is added by IntersectionObserver. The first section gets .section-visible

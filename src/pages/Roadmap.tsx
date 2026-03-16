@@ -140,7 +140,13 @@ function RoadmapCard({ item, status }: { item: RoadmapItem; status: RoadmapColum
   return <div className={`${cls} hover:bg-black/45`}>{inner}</div>;
 }
 
+const DONE_LIMIT = 5;
+
 function Column({ status, label, color, items }: RoadmapColumnProps) {
+  const limited = status === 'done' && items.length > DONE_LIMIT;
+  const visible = limited ? items.slice(0, DONE_LIMIT) : items;
+  const hidden = limited ? items.length - DONE_LIMIT : 0;
+
   return (
     <div className="flex flex-col min-w-0">
       <div
@@ -149,9 +155,21 @@ function Column({ status, label, color, items }: RoadmapColumnProps) {
         {label}
       </div>
       <div className="flex flex-col gap-2.5">
-        {items.map((item) => (
+        {visible.map((item) => (
           <RoadmapCard key={item.title} item={item} status={status} />
         ))}
+        {limited && (
+          <a
+            href="https://github.com/orgs/UVerify-io/projects/1"
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center justify-center gap-1.5 rounded-xl border border-white/10 border-dashed py-2 text-xs text-white/30 hover:text-white/55 hover:border-white/25 transition-colors duration-200"
+          >
+            <span>+{hidden} more</span>
+            <span className="text-white/20">·</span>
+            <span>view on GitHub</span>
+          </a>
+        )}
       </div>
     </div>
   );
