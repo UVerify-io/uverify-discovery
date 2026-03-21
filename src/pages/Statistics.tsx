@@ -32,6 +32,7 @@ export default function Statistics() {
   const [categories, setCategories] = useState<CategoryData[]>([]);
   const [txFees, setTxFees] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
+  const [hoveredLabel, setHoveredLabel] = useState<string | null>(null);
 
   useEffect(() => {
     const base = 'https://api.uverify.io/api/v1/statistic';
@@ -54,7 +55,6 @@ export default function Statistics() {
         setTxFees(parseInt(fees, 10));
       })
       .catch(() => {
-        // Fall back to last-known data if API is unreachable
         setCategories([
           { label: 'Identity', value: 87, color: CATEGORY_COLORS['Identity'] },
           {
@@ -109,41 +109,93 @@ export default function Statistics() {
           Fetching chain data…
         </div>
       ) : (
-        <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16 w-full justify-center">
-          <DonutChart segments={categories} size={220} thickness={50} />
+        <div className="flex flex-col md:flex-row items-center gap-10 md:gap-16 w-full justify-center">
+          <DonutChart
+            segments={categories}
+            size={260}
+            thickness={55}
+            hoveredLabel={hoveredLabel}
+            onHoverChange={setHoveredLabel}
+          />
 
-          <div className="flex flex-col gap-4 min-w-[200px]">
+          <div className="flex flex-col gap-3 min-w-[220px]">
             {/* Legend */}
             <div className="flex flex-col gap-2">
-              {categories.map((c) => (
-                <div key={c.label} className="flex items-center gap-3">
-                  <span
-                    className="w-3 h-3 rounded-full flex-shrink-0"
-                    style={{ background: c.color }}
-                  />
-                  <span className="text-sm text-white/80 flex-1">
-                    {c.label}
-                  </span>
-                  <span className="text-sm font-bold tabular-nums">
-                    {c.value}
-                  </span>
-                  <span className="text-xs text-white/40 tabular-nums w-10 text-right">
-                    {total > 0 ? Math.round((c.value / total) * 100) : 0}%
-                  </span>
-                </div>
-              ))}
+              {categories.map((c) => {
+                const isHovered = hoveredLabel === c.label;
+                const pct = total > 0 ? Math.round((c.value / total) * 100) : 0;
+                return (
+                  <div
+                    key={c.label}
+                    onMouseEnter={() => setHoveredLabel(c.label)}
+                    onMouseLeave={() => setHoveredLabel(null)}
+                    className="flex items-center gap-3 px-3 py-2 rounded-xl cursor-default transition-all duration-250"
+                    style={{
+                      background: isHovered
+                        ? `${c.color}18`
+                        : 'rgba(255,255,255,0.005)',
+                      border: `1px solid ${isHovered ? c.color + 'aa' : c.color + '35'}`,
+                      boxShadow: isHovered
+                        ? `0 0 14px ${c.color}40, inset 0 0 8px ${c.color}12`
+                        : 'none',
+                      backdropFilter: 'none',
+                    }}
+                  >
+                    {/* Glowing dot */}
+                    <span
+                      className="w-2.5 h-2.5 rounded-full flex-shrink-0 transition-all duration-250"
+                      style={{
+                        background: c.color,
+                        boxShadow: isHovered
+                          ? `0 0 8px ${c.color}, 0 0 16px ${c.color}88`
+                          : `0 0 4px ${c.color}99`,
+                      }}
+                    />
+                    <span className="text-sm flex-1 transition-colors duration-200"
+                      style={{ color: isHovered ? 'rgba(255,255,255,0.95)' : 'rgba(255,255,255,0.75)' }}>
+                      {c.label}
+                    </span>
+                    <span
+                      className="text-sm font-bold tabular-nums transition-colors duration-200"
+                      style={{ color: isHovered ? c.color : 'rgba(255,255,255,0.9)' }}
+                    >
+                      {c.value}
+                    </span>
+                    <span
+                      className="text-xs tabular-nums w-9 text-right transition-colors duration-200"
+                      style={{ color: isHovered ? `${c.color}cc` : 'rgba(255,255,255,0.35)' }}
+                    >
+                      {pct}%
+                    </span>
+                  </div>
+                );
+              })}
             </div>
 
             {/* Key stats */}
-            <div className="border-t border-white/10 pt-4 grid grid-cols-2 gap-4 h-xs:hidden">
-              <div>
+            <div className="grid grid-cols-2 gap-3 h-xs:hidden">
+              <div
+                className="rounded-xl px-3 py-3 transition-all duration-200"
+                style={{
+                  background: 'rgba(255,255,255,0.005)',
+                  border: '1px solid rgba(255,255,255,0.10)',
+                  backdropFilter: 'blur(8px)',
+                }}
+              >
                 <p className="text-2xl font-extrabold">{total}</p>
                 <p className="text-xs text-white/50 mt-0.5">
                   Certificates issued
                 </p>
               </div>
               {txFees !== null && (
-                <div>
+                <div
+                  className="rounded-xl px-3 py-3 transition-all duration-200"
+                  style={{
+                    background: 'rgba(255,255,255,0.04)',
+                    border: '1px solid rgba(255,255,255,0.12)',
+                    backdropFilter: 'blur(8px)',
+                  }}
+                >
                   <p className="text-2xl font-extrabold">
                     ₳{lovelaceToAda(txFees)}
                   </p>

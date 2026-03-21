@@ -20,7 +20,7 @@ export default function Footer() {
   return (
     <div className="flex items-center justify-center flex-col">
       <div className="flex items-center justify-center">
-        <a href="https://x.com/UVer1fy" target="_blank" rel="noreferrer">
+        <a href="https://x.com/uvfyhq" target="_blank" rel="noreferrer">
           <svg
             className="w-8 h-8 text-white mx-2"
             aria-hidden="true"

@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 interface Segment {
   label: string;
   value: number;
@@ -8,6 +10,8 @@ interface DonutChartProps {
   segments: Segment[];
   size?: number;
   thickness?: number;
+  hoveredLabel?: string | null;
+  onHoverChange?: (label: string | null) => void;
 }
 
 function polarToCartesian(
@@ -24,15 +28,29 @@ export default function DonutChart({
   segments,
   size = 220,
   thickness = 48,
+  hoveredLabel,
+  onHoverChange,
 }: DonutChartProps) {
+  const [internalHovered, setInternalHovered] = useState<string | null>(null);
+  const activeLabel = hoveredLabel !== undefined ? hoveredLabel : internalHovered;
+
+  const handleEnter = (label: string) => {
+    setInternalHovered(label);
+    onHoverChange?.(label);
+  };
+  const handleLeave = () => {
+    setInternalHovered(null);
+    onHoverChange?.(null);
+  };
+
   const total = segments.reduce((sum, s) => sum + s.value, 0);
   if (total === 0) return null;
 
   const cx = size / 2;
   const cy = size / 2;
-  const outerR = (size - 8) / 2;
+  const outerR = (size - 12) / 2;
   const innerR = outerR - thickness;
-  const GAP = 1.5;
+  const GAP = 2;
 
   let currentAngle = 0;
 
@@ -57,13 +75,27 @@ export default function DonutChart({
       'Z',
     ].join(' ');
 
+    const isHovered = activeLabel === seg.label;
+
     return (
       <path
         key={seg.label}
         d={d}
         fill={seg.color}
-        filter="url(#segment-glow)"
-        className="opacity-90 hover:opacity-100 transition-opacity duration-200"
+        fillOpacity={isHovered ? 0.28 : 0.04}
+        stroke={seg.color}
+        strokeWidth={isHovered ? 1.5 : 0.8}
+        strokeOpacity={isHovered ? 1 : 0.85}
+        onMouseEnter={() => handleEnter(seg.label)}
+        onMouseLeave={handleLeave}
+        style={{
+          filter: isHovered
+            ? `drop-shadow(0 0 8px ${seg.color}) drop-shadow(0 0 18px ${seg.color}99)`
+            : `drop-shadow(0 0 3px ${seg.color}88)`,
+          transition:
+            'filter 0.25s ease, fill-opacity 0.25s ease, stroke-width 0.2s ease',
+          cursor: 'pointer',
+        }}
       />
     );
   });
@@ -75,27 +107,53 @@ export default function DonutChart({
       height={size}
       className="overflow-visible"
     >
-      <defs>
-        <filter id="segment-glow" x="-30%" y="-30%" width="160%" height="160%">
-          <feGaussianBlur stdDeviation="4" result="blur" />
-          <feMerge>
-            <feMergeNode in="blur" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
-      </defs>
+      {/* Background plate */}
+      <circle
+        cx={cx}
+        cy={cy}
+        r={outerR + 1}
+        fill="rgba(255,255,255,0.03)"
+        stroke="rgba(255,255,255,0.07)"
+        strokeWidth="1"
+      />
+
       {paths}
+
+      {/* Inner hole */}
+      <circle
+        cx={cx}
+        cy={cy}
+        r={innerR - 1}
+        fill="transparent"
+        stroke="rgba(255,255,255,0.06)"
+        strokeWidth="1"
+      />
+
+      {/* Center text */}
       <text
         x={cx}
-        y={cy}
+        y={cy - 8}
         textAnchor="middle"
         dominantBaseline="central"
         fill="white"
-        fontSize="34"
+        fontSize="30"
         fontWeight="bold"
         fontFamily="system-ui"
+        style={{ pointerEvents: 'none' }}
       >
         {total}
+      </text>
+      <text
+        x={cx}
+        y={cy + 16}
+        textAnchor="middle"
+        dominantBaseline="central"
+        fill="rgba(255,255,255,0.35)"
+        fontSize="10"
+        fontFamily="system-ui"
+        style={{ pointerEvents: 'none' }}
+      >
+        TOTAL
       </text>
     </svg>
   );
