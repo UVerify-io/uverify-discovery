@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-04-03T18:49:44.630Z",
+  "updatedAt": "2026-04-04T06:44:07.252Z",
   "columns": [
     {
       "status": "planned",
@@ -17,6 +17,16 @@
           "title": "[🚀 Feature]: Transaction Sponsorship",
           "description": "For onboarding users the fee provider script could be super helpful, already started in the uverify/scripts repository. It just needs to be adopted by the backend by providing a controller and the needed off-chain business logic.",
           "issueUrl": "https://github.com/UVerify-io/uverify-backend/issues/27"
+        },
+        {
+          "title": "[🚀 Feature]: Use yaci-node-app snapshots in backend tests and CI to eliminate hard resets",
+          "description": "## Summary\n\nReplace the current hard-reset and preparation-tx replay approach in backend\ntest suites with snapshot-based state loading via yaci-node-app. Each test suite\nrestores from a known-good snapshot instead of rebuilding state from scratch.\n\n## Motivation\n\nThe existing CI setup requires a full hard reset of the local devnet between\ntest suites, followed by replaying all preparation transactions before each\nsuite can run. This makes test runs slow and brittle: any flakiness in the\npreparation phase blocks downstream tests.\n\nYaci node app supports saving and restoring devnet state as snapshots. A snapshot\ntaken after all preparation transactions have been confirmed captures exactly\nthe state each test suite expects. Restoring from that snapshot is near-instant\nand removes the coupling between test suites entirely.\n\n## Proposed Solution\n\n- Define a canonical \"prepared state\" snapshot that includes:\n  - All funded test wallets\n  - Any pre-issued certificates or datums required by test fixtures\n  - UVerify backend in its expected initial state\n- Update the test harness to restore from this snapshot at the start of each\n  test suite rather than triggering a hard reset and replaying transactions\n- Integrate snapshot restoration into the CI pipeline so each job starts from\n  a clean, deterministic state\n- Store the snapshot artifact in the repo or in CI artifact storage and\n  regenerate it only when the preparation transaction set changes",
+          "issueUrl": "https://github.com/UVerify-io/uverify-backend/issues/40"
+        },
+        {
+          "title": "[🚀 Feature]: TxFlow-based submission pipeline with step supplier to handle concurrent certificate submissions",
+          "description": "## Summary\n\nImplement a TxFlow-based submission pipeline with a custom step supplier to\nqueue and chain certificate transactions correctly, preventing failures caused\nby rapid sequential submissions that result in conflicting UTXO references.\n\n## Problem\n\nEach certificate issuance in UVerify requires updating an on-chain UTXO datum\n(state update). If a user submits two certificates in quick succession, both\ntransactions may be built against the same input UTXO. The first transaction\nconsumes that UTXO and the second fails on-chain because its input no longer\nexists.\n\nThis is not a batch submission scenario. It can happen with just two back-to-back\nsubmissions from a single user. The root cause is that the second transaction is\nbuilt before the first is confirmed, so the UTXO it references is already spent.\n\n## Proposed Solution\n\nIntroduce a submission pipeline backed by TxFlow that processes certificate\nrequests in order. Instead of reading the current UTXO datum state from the\nchain for each transaction, a custom step supplier reads the output datum state\nof the preceding step in the pipeline. This allows the next transaction to be\nbuilt correctly against the output of the previous one before either is confirmed\non-chain.\n\nReference: https://cardano-client.dev/docs/preview/txflow\n\nThe pipeline must also handle rollbacks. If a transaction in the chain is rolled\nback, the supplier detects the rollback point and rebuilds all subsequent\ntransactions in the queue from that point forward using the restored datum state.\n\nKey responsibilities of the step supplier:\n- Maintain an in-memory queue of pending certificate payloads\n- Track the expected output datum state after each step so the next step builds\n  against it rather than the on-chain state\n- Detect rollbacks and trigger a rebuild of the tail of the chain from the\n  affected step onward\n- Surface submission errors per certificate so callers get accurate feedback",
+          "issueUrl": "https://github.com/UVerify-io/uverify-backend/issues/39"
         }
       ]
     },
@@ -24,7 +34,18 @@
       "status": "progress",
       "label": "In Progress",
       "color": "bg-yellow-400/20 border-yellow-400/30 text-yellow-300",
-      "items": []
+      "items": [
+        {
+          "title": "[🚀 Feature]: Claude Skill for UVerify SDKs and Custom UI Templates",
+          "description": "## Summary\n\nCreate a Claude skill document that enables AI coding assistants to accurately\nhelp developers integrate the UVerify SDK and build custom certificate UI\ntemplates, without hallucinating API signatures or misrepresenting platform\nbehavior.\n\n## Motivation\n\nAs UVerify grows adoption among developers, more of them will reach for Claude\nor similar assistants while integrating the SDK. Without a skill file, Claude\ndefaults to guessing based on similar libraries, producing incorrect code that\nreferences non-existent methods or wrong datum structures.\n\nA well-written skill closes this gap: it gives Claude the exact API surface,\ncorrect on-chain datum schema, SDK initialization patterns for Node.js, Python,\nand Java, and guidance on building custom UI templates for verification\ncertificates.\n\n## Proposed Solution\n\nCreate a SKILL.md file at the root of the uverify-examples repo (or as a\nstandalone repository) covering:\n\n**SDK usage**\n- Installation and initialization for each supported runtime\n  (Node.js, Python, Java)\n- Issuing a certificate: required parameters, wallet integration (mainnet) vs\n  headless wallet (server-side) vs SDK faucet (preprod)\n- Verifying a certificate: wallet-free flow, expected response shape\n- On-chain datum schema: field names, types, and semantics\n- Common error patterns and how to handle them\n\n**Custom UI templates**\n- Structure of a certificate template: required fields, optional metadata\n- How to pass custom template data at issuance time\n- How to retrieve and render a certificate by hash\n- Example templates with annotated code\n\n**Platform-specific notes**\n- Wallet requirements: CIP-30 on mainnet (Eternl, Lace, Nami), none for\n  verification, headless for server-side issuance\n- Preprod vs mainnet differences\n- Blockfrost configuration",
+          "issueUrl": "https://github.com/UVerify-io/uverify-sdks/issues/29"
+        },
+        {
+          "title": "Local devnet playground for uverify-examples using yaci-node-app and snapshots",
+          "description": "## Summary\n\nIntegrate yaci-node-app into the uverify-examples repository so developers can\nspin up a fully pre-funded local Cardano devnet from a snapshot and run all\nSDK examples without a wallet, testnet ADA, or any external dependency.\n\n## Motivation\n\nThe current developer onboarding path for uverify-examples requires either a\nreal preprod wallet or manual interaction with the SDK faucet at\napp.preprod.uverify.io. This creates friction for developers who just want to\nexplore the SDK locally.\n\nYaci DevKit can launch a local devnet in seconds and supports loading from a\nsnapshot that already contains the required funding state and UVerify\npreparation transactions. This would make the examples completely self-contained\nand reproducible.\n\n## Proposed Solution\n\n- Add a yaci-node-app configuration to the uverify-examples repo\n  (Docker Compose or npm-based, depending on the SDK language)\n- Create a devnet snapshot that includes:\n  - Pre-funded developer wallets used in the examples\n  - Any preparation transactions required by the UVerify backend\n- Add a README section with a one-command startup: spin up devnet, load\n  snapshot, run examples\n- Point the SDK examples to the local Blockfrost-compatible Yaci Store API\n  endpoint by default when a local devnet is detected",
+          "issueUrl": "https://github.com/UVerify-io/uverify-examples/issues/1"
+        }
+      ]
     },
     {
       "status": "done",
