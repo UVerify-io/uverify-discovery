@@ -38,9 +38,38 @@ export async function loader({ params }: LoaderFunctionArgs) {
   };
 }
 
+export async function clientLoader({ params }: { params: Record<string, string | undefined> }) {
+  const slug = params['slug'] ?? '';
+  const { getPost: findPost, getAllPosts: findAllPosts } = await import('../../lib/blog');
+  const { markdownToHtml: renderMarkdown } = await import('../../lib/markdown');
+  const { formatDate: fmt } = await import('../../lib/format');
+
+  const post = findPost(slug);
+  if (!post || post.frontmatter.draft) {
+    throw new Response(null, { status: 404 });
+  }
+
+  const html = await renderMarkdown(post.rawContent);
+  const allPosts = findAllPosts();
+  const idx = allPosts.findIndex((p) => p.slug === slug);
+  const prev = idx < allPosts.length - 1 ? allPosts[idx + 1] : null;
+  const next = idx > 0 ? allPosts[idx - 1] : null;
+
+  return {
+    slug: post.slug,
+    frontmatter: post.frontmatter,
+    readingTime: post.readingTime,
+    publishedFormatted: fmt(post.frontmatter.publishedAt),
+    updatedFormatted: post.frontmatter.updatedAt ? fmt(post.frontmatter.updatedAt) : null,
+    html,
+    prev: prev ? { slug: prev.slug, title: prev.frontmatter.title } : null,
+    next: next ? { slug: next.slug, title: next.frontmatter.title } : null,
+  };
+}
+
 type LoaderData = Awaited<ReturnType<typeof loader>>;
 
-export const meta: MetaFunction<typeof loader> = ({ data: loaderData }) => {
+export const meta: MetaFunction<typeof loader> = ({ loaderData }) => {
   if (!loaderData) return [{ title: 'Post not found | UVerify Blog' }];
 
   const { frontmatter, slug } = loaderData;

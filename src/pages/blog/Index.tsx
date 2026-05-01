@@ -10,9 +10,14 @@ export async function loader() {
   return { posts };
 }
 
+export async function clientLoader() {
+  const { getAllPosts: getPosts } = await import('../../lib/blog');
+  return { posts: getPosts() };
+}
+
 type LoaderData = Awaited<ReturnType<typeof loader>>;
 
-export const meta: MetaFunction<typeof loader> = ({ data }) => {
+export const meta: MetaFunction<typeof loader> = ({ loaderData: data }) => {
   const title = 'Blog | UVerify';
   const description =
     'Insights on blockchain document certification, Cardano, digital trust, and developer resources from the UVerify team.';
