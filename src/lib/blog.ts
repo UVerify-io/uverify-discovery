@@ -1,6 +1,40 @@
-import matter from 'gray-matter';
 import { z } from 'zod/v4';
 export { formatDate } from './format';
+
+function parseFrontmatter(raw: string): { data: Record<string, unknown>; content: string } {
+  const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
+  if (!match) return { data: {}, content: raw };
+
+  const data: Record<string, unknown> = {};
+  const lines = match[1].split('\n');
+  let i = 0;
+  while (i < lines.length) {
+    const line = lines[i];
+    const colon = line.indexOf(':');
+    if (colon === -1 || line.startsWith('#')) { i++; continue; }
+
+    const key = line.slice(0, colon).trim();
+    const rest = line.slice(colon + 1).trim();
+
+    if (rest === '') {
+      const items: string[] = [];
+      i++;
+      while (i < lines.length && lines[i].trimStart().startsWith('-')) {
+        items.push(lines[i].trim().slice(1).trim().replace(/^['"]|['"]$/g, ''));
+        i++;
+      }
+      data[key] = items;
+      continue;
+    }
+
+    if (rest === 'true') data[key] = true;
+    else if (rest === 'false') data[key] = false;
+    else data[key] = rest.replace(/^['"]|['"]$/g, '');
+    i++;
+  }
+
+  return { data, content: match[2] };
+}
 
 const markdownFiles = import.meta.glob<string>('/content/blog/*.md', {
   eager: true,
@@ -39,7 +73,7 @@ function calcReadingTime(text: string): number {
 
 function parsePost(filePath: string, raw: string): Post {
   const filename = filePath.split('/').pop() ?? '';
-  const { data, content } = matter(raw);
+  const { data, content } = parseFrontmatter(raw);
 
   const result = FrontmatterSchema.safeParse(data);
   if (!result.success) {
