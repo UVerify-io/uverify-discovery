@@ -29,6 +29,9 @@ function parseFrontmatter(raw: string): { data: Record<string, unknown>; content
 
     if (rest === 'true') data[key] = true;
     else if (rest === 'false') data[key] = false;
+    else if (rest.startsWith('[')) {
+      try { data[key] = JSON.parse(rest); } catch { data[key] = []; }
+    }
     else data[key] = rest.replace(/^['"]|['"]$/g, '');
     i++;
   }
