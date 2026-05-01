@@ -1,17 +1,15 @@
 # UVerify Discovery
 
-UVerify Discovery is an open-source project designed to serve as an explainer for the uverify service. It provides a comprehensive overview of the features offered by uverify, a decentralized application that allows users to place verifiable data fingerprints on the Cardano blockchain. This project is built using React, Tailwind CSS, and Vite, and is available under the GPLv3 license.
+The landing page for [uverify.io](https://uverify.io) — an explainer for the UVerify service. It provides a comprehensive overview of the features offered by UVerify, a decentralized application that lets users place verifiable data fingerprints on the Cardano blockchain.
+
+**Stack:** React 19 · React Router v7 (framework mode, SSG) · Tailwind CSS v4 · Vite · TypeScript
 
 ## Getting Started
 
-To get a local copy up and running, follow these simple steps.
-
 ### Prerequisites
 
-Ensure you have the following installed:
-
-- Node.js
-- npm (Node Package Manager)
+- Node.js 20+
+- npm
 
 ### Installation
 
@@ -19,21 +17,16 @@ Ensure you have the following installed:
 
    ```bash
    git clone https://github.com/UVerify-io/uverify-discovery.git
-   ```
-
-2. **Navigate to the project directory:**
-
-   ```bash
    cd uverify-discovery
    ```
 
-3. **Install dependencies:**
+2. **Install dependencies:**
 
    ```bash
    npm install
    ```
 
-4. **Start the development server:**
+3. **Start the development server:**
 
    ```bash
    npm run dev
@@ -41,9 +34,33 @@ Ensure you have the following installed:
 
    The application will be available at `http://localhost:3050`.
 
-## Usage
+## Build
 
-Explore the different sections of the UVerify Discovery page to understand the features and benefits of the uverify service. The page is designed to provide a clear and concise explanation of how uverify works and its integration capabilities.
+```bash
+npm run build
+```
+
+The build output lands in `dist/client/` — this is the folder to deploy. It contains pre-rendered static HTML for all routes (`/`, `/terms-of-use`, `/privacy-policy`), so crawlers receive full content without needing JavaScript.
+
+The `dist/server/` folder is an intermediate SSR bundle used during the build to generate the HTML; it does not need to be deployed.
+
+## Deployment
+
+The project deploys to GitHub Pages automatically on every push to `main` via [.github/workflows/deploy.yml](.github/workflows/deploy.yml).
+
+For manual Firebase deployment:
+
+```bash
+npm run deploy
+```
+
+## Routes
+
+| Path | Description |
+|---|---|
+| `/` | Landing page (About, How It Works, Stats, Use Cases, Features, Developer Docs, Roadmap, Contact) |
+| `/terms-of-use` | Terms of Use |
+| `/privacy-policy` | Privacy Policy |
 
 ## Contributing
 
@@ -61,4 +78,4 @@ Distributed under the GPLv3 License. See `LICENSE` for more information.
 
 ## Contact
 
-UVerfiy team - [hello@uverify.io](mailto:hello@uverify.io)
+UVerify team — [hello@uverify.io](mailto:hello@uverify.io)
