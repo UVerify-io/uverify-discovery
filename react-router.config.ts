@@ -26,6 +26,7 @@ function getNonDraftBlogSlugs(): string[] {
 export default {
   appDirectory: 'src',
   buildDirectory: 'dist',
+  routeDiscovery: { mode: 'initial' },
   prerender: async () => {
     const blogSlugs = getNonDraftBlogSlugs();
     return [
