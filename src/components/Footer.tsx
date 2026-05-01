@@ -79,6 +79,8 @@ export default function Footer() {
       </div>
       <div className="text-sm mt-8 flex flex-col justify-center items-center">
         <div>
+          <Link to="/blog">Blog</Link>
+          <span className="mx-1">|</span>
           <Link to="/terms-of-use">Terms of Use</Link>
           <span className="mx-1">|</span>
           <Link to="/privacy-policy">Privacy Policy</Link>

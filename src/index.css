@@ -62,6 +62,152 @@ body {
   --shadow-white-center: 0 0 12px 0 rgb(255 255 255 / .5);
 }
 
+/* ── Blog prose ──────────────────────────────────────────────────────────── */
+.prose-blog {
+  color: rgb(255 255 255 / 0.8);
+  line-height: 1.75;
+  font-size: 1rem;
+}
+.prose-blog h1,
+.prose-blog h2,
+.prose-blog h3,
+.prose-blog h4,
+.prose-blog h5,
+.prose-blog h6 {
+  color: #fff;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-top: 2em;
+  margin-bottom: 0.6em;
+}
+.prose-blog h1 { font-size: 1.875rem; }
+.prose-blog h2 { font-size: 1.5rem; }
+.prose-blog h3 { font-size: 1.25rem; }
+.prose-blog h4 { font-size: 1.125rem; }
+/* anchor links from rehype-autolink-headings */
+.prose-blog h1 a,
+.prose-blog h2 a,
+.prose-blog h3 a,
+.prose-blog h4 a {
+  color: inherit;
+  text-decoration: none;
+}
+.prose-blog h2 a:hover,
+.prose-blog h3 a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.prose-blog p { margin-top: 0; margin-bottom: 1.25em; }
+.prose-blog a {
+  color: rgb(34 211 238 / 0.9);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.15s;
+}
+.prose-blog a:hover { color: rgb(34 211 238); }
+.prose-blog a:focus-visible {
+  outline: 2px solid rgb(34 211 238 / 0.7);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+.prose-blog strong { color: #fff; font-weight: 600; }
+.prose-blog em { color: rgb(255 255 255 / 0.85); }
+.prose-blog ul { list-style: disc; padding-left: 1.5em; margin-bottom: 1.25em; }
+.prose-blog ol { list-style: decimal; padding-left: 1.5em; margin-bottom: 1.25em; }
+.prose-blog li { margin-bottom: 0.375em; }
+.prose-blog hr {
+  border: none;
+  border-top: 1px solid rgb(255 255 255 / 0.1);
+  margin: 2.5em 0;
+}
+.prose-blog blockquote {
+  border-left: 3px solid rgb(3 150 183 / 0.6);
+  padding-left: 1.25em;
+  margin: 1.5em 0;
+  color: rgb(255 255 255 / 0.65);
+  font-style: italic;
+}
+/* inline code */
+.prose-blog :not(pre) > code {
+  background: rgb(255 255 255 / 0.08);
+  border: 1px solid rgb(255 255 255 / 0.12);
+  border-radius: 4px;
+  padding: 0.15em 0.45em;
+  font-size: 0.875em;
+  color: rgb(99 236 253);
+}
+/* code blocks (rehype-pretty-code wraps in <figure> > <pre>) */
+.prose-blog [data-rehype-pretty-code-figure] {
+  margin: 1.75em 0;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgb(255 255 255 / 0.1);
+}
+.prose-blog [data-rehype-pretty-code-figure] pre {
+  overflow-x: auto;
+  padding: 1.25em 1.5em;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  margin: 0;
+}
+/* language label (title bar) */
+.prose-blog [data-rehype-pretty-code-title] {
+  background: rgb(255 255 255 / 0.05);
+  border-bottom: 1px solid rgb(255 255 255 / 0.08);
+  padding: 0.5em 1.25em;
+  font-size: 0.75rem;
+  color: rgb(255 255 255 / 0.45);
+  font-family: monospace;
+}
+.prose-blog img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin: 1.5em auto;
+  display: block;
+}
+.prose-blog table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  margin-bottom: 1.5em;
+}
+.prose-blog th {
+  background: rgb(255 255 255 / 0.05);
+  color: rgb(255 255 255 / 0.8);
+  font-weight: 600;
+  text-align: left;
+  padding: 0.6em 1em;
+  border-bottom: 1px solid rgb(255 255 255 / 0.12);
+}
+.prose-blog td {
+  padding: 0.55em 1em;
+  border-bottom: 1px solid rgb(255 255 255 / 0.07);
+  color: rgb(255 255 255 / 0.7);
+}
+.prose-blog tr:last-child td { border-bottom: none; }
+
+/* ── Code copy button ────────────────────────────────────────────────────── */
+.code-copy-btn {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.75rem;
+  font-size: 0.7rem;
+  font-family: inherit;
+  padding: 0.25rem 0.6rem;
+  border-radius: 5px;
+  background: rgb(255 255 255 / 0.1);
+  border: 1px solid rgb(255 255 255 / 0.15);
+  color: rgb(255 255 255 / 0.55);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  line-height: 1.4;
+}
+.code-copy-btn:hover {
+  background: rgb(255 255 255 / 0.18);
+  color: rgb(255 255 255 / 0.9);
+}
+.code-copy-btn:focus-visible {
+  outline: 2px solid rgb(34 211 238 / 0.7);
+  outline-offset: 1px;
+}
+
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,
   so we've added these compatibility styles to make sure everything still

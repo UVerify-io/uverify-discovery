@@ -1,5 +1,32 @@
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from 'react-router';
+import type { MetaFunction } from 'react-router';
 import './index.css';
+
+export const meta: MetaFunction = () => [
+  { title: 'UVerify | Technology and Trust' },
+  {
+    name: 'description',
+    content:
+      'UVerify lets you certify documents, diplomas, lab reports, and digital products on the Cardano blockchain — tamper-proof and instantly verifiable by anyone.',
+  },
+  { property: 'og:title', content: 'UVerify | Technology and Trust' },
+  {
+    property: 'og:description',
+    content:
+      'Blockchain-powered document certification. Issue tamper-proof certificates backed by Cardano — no technical knowledge required.',
+  },
+  { property: 'og:image', content: 'https://uverify.io/og-image.png' },
+  { property: 'og:url', content: 'https://uverify.io' },
+  { property: 'og:type', content: 'website' },
+  { name: 'twitter:card', content: 'summary_large_image' },
+  { name: 'twitter:title', content: 'UVerify | Technology and Trust' },
+  {
+    name: 'twitter:description',
+    content:
+      'Blockchain-powered document certification. Issue tamper-proof certificates backed by Cardano — no technical knowledge required.',
+  },
+  { name: 'twitter:image', content: 'https://uverify.io/og-image.png' },
+];
 
 export default function Root() {
   return (
@@ -12,26 +39,6 @@ export default function Root() {
           name="viewport"
           content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content"
         />
-        <title>UVerify | Technology and Trust</title>
-        <meta
-          name="description"
-          content="UVerify lets you certify documents, diplomas, lab reports, and digital products on the Cardano blockchain — tamper-proof and instantly verifiable by anyone."
-        />
-        <meta property="og:title" content="UVerify | Technology and Trust" />
-        <meta
-          property="og:description"
-          content="Blockchain-powered document certification. Issue tamper-proof certificates backed by Cardano — no technical knowledge required."
-        />
-        <meta property="og:image" content="https://uverify.io/og-image.png" />
-        <meta property="og:url" content="https://uverify.io" />
-        <meta property="og:type" content="website" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="UVerify | Technology and Trust" />
-        <meta
-          name="twitter:description"
-          content="Blockchain-powered document certification. Issue tamper-proof certificates backed by Cardano — no technical knowledge required."
-        />
-        <meta name="twitter:image" content="https://uverify.io/og-image.png" />
         <Meta />
         <Links />
         {/* Matomo */}

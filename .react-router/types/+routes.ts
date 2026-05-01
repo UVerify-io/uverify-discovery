@@ -20,12 +20,26 @@ type Pages = {
   "/privacy-policy": {
     params: {};
   };
+  "/blog": {
+    params: {};
+  };
+  "/blog/rss.xml": {
+    params: {};
+  };
+  "/blog/:slug": {
+    params: {
+      "slug": string;
+    };
+  };
+  "/sitemap.xml": {
+    params: {};
+  };
 };
 
 type RouteFiles = {
   "root.tsx": {
     id: "root";
-    page: "/" | "/terms-of-use" | "/privacy-policy";
+    page: "/" | "/terms-of-use" | "/privacy-policy" | "/blog" | "/blog/rss.xml" | "/blog/:slug" | "/sitemap.xml";
   };
   "./App.tsx": {
     id: "App";
@@ -39,6 +53,22 @@ type RouteFiles = {
     id: "pages/PrivacyPolicy";
     page: "/privacy-policy";
   };
+  "./pages/blog/Index.tsx": {
+    id: "pages/blog/Index";
+    page: "/blog";
+  };
+  "./pages/blog/Rss.ts": {
+    id: "pages/blog/Rss";
+    page: "/blog/rss.xml";
+  };
+  "./pages/blog/Post.tsx": {
+    id: "pages/blog/Post";
+    page: "/blog/:slug";
+  };
+  "./pages/Sitemap.ts": {
+    id: "pages/Sitemap";
+    page: "/sitemap.xml";
+  };
 };
 
 type RouteModules = {
@@ -46,4 +76,8 @@ type RouteModules = {
   "App": typeof import("./src/./App.tsx");
   "pages/TermsOfUse": typeof import("./src/./pages/TermsOfUse.tsx");
   "pages/PrivacyPolicy": typeof import("./src/./pages/PrivacyPolicy.tsx");
+  "pages/blog/Index": typeof import("./src/./pages/blog/Index.tsx");
+  "pages/blog/Rss": typeof import("./src/./pages/blog/Rss.ts");
+  "pages/blog/Post": typeof import("./src/./pages/blog/Post.tsx");
+  "pages/Sitemap": typeof import("./src/./pages/Sitemap.ts");
 };
