@@ -1,0 +1,40 @@
+# UVerify
+
+> UVerify is an open-source document notarization and certificate platform built on the Cardano blockchain. It records SHA-256 fingerprints of documents on-chain without ever seeing the file itself, and renders verifiable certificate pages as interactive decentralized applications.
+
+## Product
+
+- [Web App](https://app.uverify.io): Drag-and-drop notarization and verification — no code required
+- [API](https://api.uverify.io/api/v1): Public REST API for programmatic notarization and verification, no API key required
+- [Documentation](https://docs.uverify.io): Full developer and platform documentation
+
+## Use Cases
+
+- [Academic Credentials](https://docs.uverify.io/use-cases/academic-credentials): Verifiable diplomas and transcripts issued by universities
+- [Product Passports](https://docs.uverify.io/use-cases/product-passports): On-chain digital product passports for physical goods
+- [Legal Documents](https://docs.uverify.io/use-cases/legal-documents): Tamper-proof notarization of contracts and legal files
+- [Connected Goods](https://docs.uverify.io/use-cases/connected-goods): NFC-linked certificates for physical items
+- [Pet Necklace](https://docs.uverify.io/use-cases/pet-necklace): Privacy-split pattern — on-chain hash combined with NFC chip data
+- [Private Chain Attestations](https://docs.uverify.io/use-cases/private-chain-attestations): Anchoring private chain state to a public blockchain
+
+## SDK
+
+- [TypeScript SDK](https://docs.uverify.io/sdk/typescript): @uverify/sdk — npm package for Node.js and browser
+- [Python SDK](https://docs.uverify.io/sdk/python): uverify-sdk — PyPI package
+- [Java SDK](https://docs.uverify.io/sdk/java): io.uverify:uverify-sdk — Maven / JBang compatible
+
+## Platform
+
+- [How It Works](https://docs.uverify.io/concepts): Core concepts — hash-not-file, certificate as a dapp, fee system
+- [UVerify as a Platform](https://docs.uverify.io/platform): Bootstrap Datum, white-labelling, fee sponsorship
+- [Custom Templates](https://docs.uverify.io/templates): Build your own certificate UI with @uverify/cli
+- [Extensions](https://docs.uverify.io/extensions): Tokenizable certificates, fractionized certificates
+- [Self-Hosting](https://docs.uverify.io/self-hosting): Run the full stack yourself — both backend and frontend are open source
+- [Pricing](https://docs.uverify.io/pricing): Fee structure and sponsorship options
+- [API Docs](https://docs.uverify.io/api-docs): Interactive Swagger reference
+
+## Community
+
+- [GitHub](https://github.com/UVerify-io): Source code and issue tracker
+- [Discord](https://discord.gg/Dvqkynn6xc): Community and support
+- [Blog](https://uverify.io/blog): Articles and announcements
