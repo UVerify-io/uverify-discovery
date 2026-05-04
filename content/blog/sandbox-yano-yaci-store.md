@@ -3,7 +3,7 @@ title: "What a Playground: Building a Blockchain Sandbox with Yano and Yaci Stor
 description: "How the UVerify sandbox spins up a full local Cardano environment from a pre-built snapshot with smart contracts already deployed, no private keys required, and wall time always current."
 publishedAt: "2026-05-04T00:00:00Z"
 tags: ["blockchain", "cardano", "devtools", "sandbox", "yaci", "yano"]
-ogImage: "/og-image.png"
+ogImage: "/blog/sandbox-yano-yaci-store/cover-1000x420.png"
 draft: false
 ---
 
