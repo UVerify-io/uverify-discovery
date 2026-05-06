@@ -1,5 +1,5 @@
 ---
-title: "More than just a fingerprint: Why your pet should use UVerify"
+title: "More Than Just a Fingerprint: Why Your Pet Should Use UVerify"
 description: "Meet Sofia, a handmade pet necklace maker who discovered that blockchain technology does not add complexity to her business. It actually makes her life easier."
 publishedAt: "2026-05-06T00:00:00Z"
 tags: ["blockchain", "cardano", "nfc", "use-case", "decentralized", "small-business", "pets"]
@@ -13,7 +13,7 @@ Sofia makes handmade pet necklaces. Each one is crafted from recycled leather, s
 
 She is not a software engineer. She does not want to be one. She wants to make necklaces.
 
-## The Stack She Did Not Build
+## The Road She Did Not Take
 
 For a long time, the digital side of what Sofia does would have required someone to build and maintain a significant piece of infrastructure.
 
@@ -23,7 +23,7 @@ Every one of those pieces is a dependency. A server goes down and the necklace b
 
 Sofia is not running a tech startup. She is running a craft business. None of this should be her problem.
 
-## What She Actually Did
+## What She Did Instead
 
 Sofia discovered UVerify. And you might be thinking: is that not just a service that puts a fingerprint on a blockchain to prove nobody tampered with the data? It is much more than that. Every certificate is effectively a decentralized application. Here is what that means in practice.
 
@@ -61,7 +61,7 @@ To legitimately update a phone number, Sofia resubmits the certificate with the 
 
 ---
 
-## Sofia's Complete Stack
+## Everything Sofia Needs
 
 Here is a full inventory of what Sofia runs:
 
