@@ -1,0 +1,19 @@
+{
+  "hosting": {
+    "public": "dist/client",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "redirects": [
+      {
+        "source": "/verify/:path*",
+        "destination": "https://app.uverify.io/verify/:path*",
+        "type": 301
+      }
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
