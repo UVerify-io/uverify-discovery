@@ -3,27 +3,27 @@ import type { MetaFunction } from 'react-router';
 import './index.css';
 
 export const meta: MetaFunction = () => [
-  { title: 'UVerify | Technology and Trust' },
+  { title: 'UVerify | Prove authenticity. Forever.' },
   {
     name: 'description',
     content:
-      'UVerify lets you certify documents, diplomas, lab reports, and digital products on the Cardano blockchain — tamper-proof and instantly verifiable by anyone.',
+      'UVerify records tamper-proof fingerprints on Cardano. Every certificate is a fully interactive decentralized app: shareable, instantly verifiable, and permanent.',
   },
-  { property: 'og:title', content: 'UVerify | Technology and Trust' },
+  { property: 'og:title', content: 'UVerify | Prove authenticity. Forever.' },
   {
     property: 'og:description',
     content:
-      'Blockchain-powered document certification. Issue tamper-proof certificates backed by Cardano — no technical knowledge required.',
+      'UVerify records tamper-proof fingerprints on Cardano. Every certificate is a fully interactive decentralized app: shareable, instantly verifiable, and permanent.',
   },
   { property: 'og:image', content: 'https://uverify.io/og-image.png' },
   { property: 'og:url', content: 'https://uverify.io' },
   { property: 'og:type', content: 'website' },
   { name: 'twitter:card', content: 'summary_large_image' },
-  { name: 'twitter:title', content: 'UVerify | Technology and Trust' },
+  { name: 'twitter:title', content: 'UVerify | Prove authenticity. Forever.' },
   {
     name: 'twitter:description',
     content:
-      'Blockchain-powered document certification. Issue tamper-proof certificates backed by Cardano — no technical knowledge required.',
+      'UVerify records tamper-proof fingerprints on Cardano. Every certificate is a fully interactive decentralized app: shareable, instantly verifiable, and permanent.',
   },
   { name: 'twitter:image', content: 'https://uverify.io/og-image.png' },
 ];
