@@ -7,13 +7,13 @@ export const meta: MetaFunction = () => [
   {
     name: 'description',
     content:
-      'UVerify records tamper-proof fingerprints on Cardano. Every certificate is a fully interactive decentralized app: shareable, instantly verifiable, and permanent.',
+      'UVerify records tamper-proof fingerprints of verifiable products, laboratory reports, digital product passports, agent receipts or any other document that needs file integrity on Cardano. Every certificate is a fully interactive decentralized app: shareable, instantly verifiable, and permanent.',
   },
   { property: 'og:title', content: 'UVerify | Prove authenticity. Forever.' },
   {
     property: 'og:description',
     content:
-      'UVerify records tamper-proof fingerprints on Cardano. Every certificate is a fully interactive decentralized app: shareable, instantly verifiable, and permanent.',
+      'UVerify records tamper-proof fingerprints of verifiable products, laboratory reports, digital product passports, agent receipts or any other document that needs file integrity on Cardano. Every certificate is a fully interactive decentralized app: shareable, instantly verifiable, and permanent.',
   },
   { property: 'og:image', content: 'https://uverify.io/og-image.png' },
   { property: 'og:url', content: 'https://uverify.io' },
