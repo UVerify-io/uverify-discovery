@@ -85,6 +85,9 @@ export default function Statistics() {
         Real-time UVerify usage statistics on Cardano mainnet
       </p>
 
+      {/* Reserved height matches the loaded chart layout so the spinner→chart
+          swap does not shift the sections below it while the user scrolls */}
+      <div className="w-full flex items-center justify-center min-h-[590px] md:min-h-[300px]">
       {loading ? (
         <div className="flex items-center gap-3 text-white/50">
           <svg
@@ -217,6 +220,7 @@ export default function Statistics() {
           </div>
         </div>
       )}
+      </div>
     </div>
   );
 }

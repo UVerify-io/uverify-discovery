@@ -113,7 +113,7 @@ export default function App() {
   };
 
   return (
-    <div ref={containerRef} className="overflow-y-auto h-dvh text-white no-scrollbar">
+    <div ref={containerRef} className="overflow-y-auto overscroll-contain h-dvh text-white no-scrollbar">
       {/* Fixed top bar */}
       <div className="fixed top-0 left-0 right-0 z-30 flex items-center justify-between px-4 h-16 backdrop-blur-md">
         <div
@@ -177,7 +177,10 @@ export default function App() {
           // section-animate: starts invisible (opacity 0, translated up)
           // section-visible: added by IntersectionObserver → plays the fade-up transition
           // The first section also gets section-visible immediately so there's no flash on load
-          className={`section-animate ${slide.anim} ${index === 0 ? 'section-visible' : ''} min-h-dvh flex items-center justify-center ${slide.bg} pt-16 sm:pt-0`}
+          // min-h-svh (not dvh): the dynamic viewport unit changes while the
+          // mobile URL bar collapses, resizing every section mid-scroll and
+          // making the visible content jump. svh stays constant during scroll.
+          className={`section-animate ${slide.anim} ${index === 0 ? 'section-visible' : ''} min-h-svh flex items-center justify-center ${slide.bg} pt-16 sm:pt-0`}
         >
           {SLIDE_CONTENTS[index]}
         </section>
