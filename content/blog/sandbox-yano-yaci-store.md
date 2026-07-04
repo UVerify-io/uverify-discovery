@@ -58,7 +58,7 @@ docker cp "bloxbean-yano:/app/snapshots/uverify-base-state" ./yano/snapshots/
 docker build -t uverify/sandbox-node:latest ./yano/
 ```
 
-When `sandbox.sh start` runs and finds no existing chainstate volume, it seeds the Docker volume from that bundled snapshot before starting any services:
+When `sandbox.py start` runs and finds no existing chainstate volume, it seeds the Docker volume from that bundled snapshot before starting any services:
 
 ```bash
 docker run --rm \
@@ -81,7 +81,7 @@ Yano solves this with a single API call:
 curl -X POST http://localhost:7070/api/v1/devnet/epochs/catch-up
 ```
 
-This advances the local chain forward through all the intermediate epochs to reach the current wall-clock time. It runs in seconds regardless of how long ago the snapshot was taken. The `sandbox.sh` script calls it automatically after the node comes up, so by the time the rest of the services are healthy, the devnet is producing blocks at the correct epoch and slot.
+This advances the local chain forward through all the intermediate epochs to reach the current wall-clock time. It runs in seconds regardless of how long ago the snapshot was taken. The `sandbox.py` script calls it automatically after the node comes up, so by the time the rest of the services are healthy, the devnet is producing blocks at the correct epoch and slot.
 
 This is the piece that makes the sandbox work correctly whether you started it an hour after the last snapshot was built or six months later.
 
@@ -148,13 +148,13 @@ In the sandbox, the backend is pointed at Yano's N2N port via `application-devne
 Starting the sandbox is a single command:
 
 ```bash
-./sandbox.sh start
+uv run sandbox.py start
 ```
 
 If the chainstate volume already exists from a previous run, it resumes from where it left off. If you want to wipe everything and start from a clean snapshot:
 
 ```bash
-./sandbox.sh start --clean
+uv run sandbox.py start --clean
 ```
 
 This stops all services, deletes the chainstate volume and the PostgreSQL data, and re-seeds from the bundled snapshot. The whole reset takes about a minute. When it finishes, every service is running and all URLs are printed to the terminal:
@@ -226,7 +226,7 @@ The sandbox requires Docker. Everything else is handled automatically.
 ```bash
 git clone https://github.com/UVerify-io/uverify-examples.git
 cd uverify-examples
-./sandbox.sh start
+uv run sandbox.py start
 ```
 
 That is the complete setup. All six services start from the snapshot, the chain advances to wall time, and the URLs are printed to the terminal.
