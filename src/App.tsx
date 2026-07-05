@@ -1,4 +1,5 @@
 import About from './pages/About';
+import BlogTeaser, { type TeaserPost } from './pages/BlogTeaser';
 import Contact from './pages/Contact';
 import DeveloperDocs from './pages/DeveloperDocs';
 import Explanation from './pages/Explanation';
@@ -9,7 +10,44 @@ import Statistics from './pages/Statistics';
 import UseCases from './pages/UseCases';
 import Logo from './assets/uverify.svg';
 import Button from './components/Button';
-import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { getAllPosts } from './lib/blog.server';
+
+// Teaser cards only use post-specific covers; the generic /og-image.png
+// fallback some posts declare would read as a stale brand placeholder
+function toTeasers(
+  posts: {
+    slug: string;
+    frontmatter: {
+      title: string;
+      description: string;
+      publishedAt: string;
+      ogImage?: string;
+    };
+    readingTime: number;
+  }[],
+): TeaserPost[] {
+  return posts.slice(0, 3).map((post) => ({
+    slug: post.slug,
+    title: post.frontmatter.title,
+    description: post.frontmatter.description,
+    cover: post.frontmatter.ogImage?.startsWith('/blog/')
+      ? post.frontmatter.ogImage
+      : null,
+    publishedAt: post.frontmatter.publishedAt,
+    readingTime: post.readingTime,
+  }));
+}
+
+export async function loader() {
+  return { posts: toTeasers(getAllPosts()) };
+}
+
+export async function clientLoader() {
+  const { getAllPosts: getPosts } = await import('./lib/blog');
+  return { posts: toTeasers(getPosts()) };
+}
 
 const SLIDES = [
   { id: 'about',       label: 'Home',          bg: 'bg-main-gradient',        anim: '' },
@@ -20,19 +58,8 @@ const SLIDES = [
   { id: 'features',    label: 'Features',      bg: 'bg-features-gradient',    anim: 'anim-deep' },
   { id: 'developer',   label: 'Developer Docs',bg: 'bg-developer-gradient',   anim: 'anim-scale' },
   { id: 'roadmap',     label: 'Roadmap',       bg: 'bg-roadmap-gradient',     anim: 'anim-soft' },
+  { id: 'blog',        label: 'Blog',          bg: 'bg-dark-gradient',        anim: 'anim-rise' },
   { id: 'impress',     label: 'Contact',       bg: 'bg-main-gradient',        anim: 'anim-soft' },
-];
-
-const SLIDE_CONTENTS = [
-  <About />,
-  <PathChooser />,
-  <Explanation />,
-  <Statistics />,
-  <UseCases />,
-  <Features />,
-  <DeveloperDocs />,
-  <Roadmap />,
-  <Contact />,
 ];
 
 const DiscordIcon = () => (
@@ -46,9 +73,29 @@ const DiscordIcon = () => (
   </svg>
 );
 
-export default function App() {
+export default function App({
+  loaderData,
+}: {
+  loaderData: { posts: TeaserPost[] };
+}) {
   const [activeSlide, setActiveSlide] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const slideContents = useMemo(
+    () => [
+      <About />,
+      <PathChooser />,
+      <Explanation />,
+      <Statistics />,
+      <UseCases />,
+      <Features />,
+      <DeveloperDocs />,
+      <Roadmap />,
+      <BlogTeaser posts={loaderData.posts} />,
+      <Contact />,
+    ],
+    [loaderData.posts],
+  );
 
   // Entrance animations + active dot tracking via IntersectionObserver
   useEffect(() => {
@@ -131,11 +178,34 @@ export default function App() {
         </div>
 
         <div className="flex items-center gap-2">
+          <Link
+            to="/blog"
+            title="Blog"
+            className="flex items-center gap-1.5 border border-cyan-400/40 rounded-xl bg-cyan-500/15 hover:bg-cyan-500/30 px-3 py-1.5 text-sm font-medium text-white/90 transition-all duration-200"
+          >
+            <svg
+              className="w-4 h-4"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={2}
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z"
+              />
+            </svg>
+            <span className="hidden md:inline">Blog</span>
+          </Link>
           <a
             href="https://discord.gg/Dvqkynn6xc"
             target="_blank"
             rel="noreferrer"
-            className="hidden sm:flex items-center gap-1.5 border border-purple-400/40 rounded-xl bg-purple-500/15 hover:bg-purple-500/30 px-3 py-1.5 text-sm font-medium text-white/90 transition-all duration-200"
+            title="Discord"
+            className="flex items-center gap-1.5 border border-purple-400/40 rounded-xl bg-purple-500/15 hover:bg-purple-500/30 px-3 py-1.5 text-sm font-medium text-white/90 transition-all duration-200"
           >
             <DiscordIcon />
             <span className="hidden md:inline">Discord</span>
@@ -182,7 +252,7 @@ export default function App() {
           // making the visible content jump. svh stays constant during scroll.
           className={`section-animate ${slide.anim} ${index === 0 ? 'section-visible' : ''} min-h-svh flex items-center justify-center ${slide.bg} pt-16 sm:pt-0`}
         >
-          {SLIDE_CONTENTS[index]}
+          {slideContents[index]}
         </section>
       ))}
     </div>
