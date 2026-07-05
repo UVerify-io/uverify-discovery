@@ -250,7 +250,7 @@ export default function App({
           // min-h-svh (not dvh): the dynamic viewport unit changes while the
           // mobile URL bar collapses, resizing every section mid-scroll and
           // making the visible content jump. svh stays constant during scroll.
-          className={`section-animate ${slide.anim} ${index === 0 ? 'section-visible' : ''} min-h-svh flex items-center justify-center ${slide.bg} pt-16 sm:pt-0`}
+          className={`section-animate ${slide.anim} ${index === 0 ? 'section-visible' : ''} min-h-svh flex items-center justify-center ${slide.bg} pt-16 pb-16 sm:pt-0 sm:pb-0`}
         >
           {slideContents[index]}
         </section>

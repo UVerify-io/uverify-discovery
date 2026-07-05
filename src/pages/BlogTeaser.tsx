@@ -12,7 +12,7 @@ export interface TeaserPost {
 
 export default function BlogTeaser({ posts }: { posts: TeaserPost[] }) {
   return (
-    <div className="w-11/12 md:w-10/12 lg:w-8/12 flex flex-col items-center py-16">
+    <div className="w-11/12 md:w-10/12 lg:w-8/12 flex flex-col items-center sm:py-16">
       <h1 className="text-3xl md:text-4xl font-extrabold mb-2 text-center h-xs:text-xl h-xs:mb-1">
         Latest from the Blog
       </h1>
