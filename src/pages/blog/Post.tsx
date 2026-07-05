@@ -217,6 +217,14 @@ export default function BlogPost({ loaderData }: { loaderData: LoaderData }) {
           />
         </header>
 
+        {frontmatter.ogImage?.startsWith('/blog/') && (
+          <img
+            src={frontmatter.ogImage}
+            alt=""
+            className="w-full aspect-[1000/420] object-cover rounded-2xl border border-white/10 mb-10"
+          />
+        )}
+
         <div className="h-px bg-gradient-to-r from-cyan-400/40 to-transparent mb-10" />
 
         {/* Body */}

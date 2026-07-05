@@ -3,7 +3,7 @@ title: "Hello World: Why Blockchain Document Certification Matters"
 description: "An introduction to UVerify and how we use the Cardano blockchain to make document certification tamper-proof, instant, and accessible to everyone."
 publishedAt: "2026-05-01T00:00:00Z"
 tags: ["blockchain", "cardano", "certification", "intro"]
-ogImage: "/og-image.png"
+ogImage: "/blog/hello-world/cover-1000x420.png"
 draft: false
 ---
 
